@@ -32,6 +32,17 @@ export const apps: AppEntry[] = [
       "Resume and project docs are chunked, embedded, and retrieved top k. Answers cite the source section instead of guessing.",
   },
   {
+    slug: "chefbot",
+    name: "Personal Chef Agent",
+    status: "in progress",
+    description:
+      "A local AI chef that suggests recipes from ingredients you type or photograph, grounding suggestions in a live web search instead of hallucinating recipes.",
+    tags: ["Agents", "LangGraph", "Tool use", "Multimodal"],
+    repoUrl: "https://github.com/marwanbukhori/chef-bot",
+    detail:
+      "A LangGraph tool-calling agent runs entirely on local Ollama models, calling a Tavily web-search tool to ground recipe suggestions in real results. Photos of ingredients go through a separate vision model first, which hands off a plain-text ingredient list to the same chef agent as a normal chat turn. Per-session memory supports natural follow-ups like \"make the first one vegetarian.\"",
+  },
+  {
     slug: "mcp-tool-server",
     name: "MCP Tool Server",
     status: "planned",
