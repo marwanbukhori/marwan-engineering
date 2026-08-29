@@ -57,6 +57,16 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
             <span className="status-dot-active h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />
             Live
           </Link>
+        ) : app.repoUrl ? (
+          <Link
+            href={app.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-sm font-medium text-subtle transition-colors group-hover:text-white"
+          >
+            View on GitHub
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </Link>
         ) : (
           <span className="text-sm text-dim transition-colors group-hover:text-white/40">
             Not live yet
