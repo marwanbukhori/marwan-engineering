@@ -7,6 +7,7 @@ import type { AppEntry, AppStatus } from "@/lib/apps";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
   live: { bg: "var(--status-live)", text: "#ffffff" },
+  done: { bg: "var(--status-done)", text: "#ffffff" },
   "in progress": { bg: "var(--status-progress)", text: "var(--status-progress-text)" },
   planned: { bg: "var(--status-planned)", text: "#ffffff" },
   idea: { bg: "var(--status-idea)", text: "#ffffff" },

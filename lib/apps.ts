@@ -1,4 +1,4 @@
-export type AppStatus = "live" | "in progress" | "planned" | "idea";
+export type AppStatus = "live" | "done" | "in progress" | "planned" | "idea";
 
 export type AppEntry = {
   slug: string;
@@ -24,7 +24,7 @@ export const apps: AppEntry[] = [
   {
     slug: "resume-chat",
     name: "RAG Chat over my resume",
-    status: "in progress",
+    status: "done",
     description:
       "Ask questions about my background and get answers grounded in my actual resume, from a LangGraph retrieval agent behind an MCP server, not a hallucinated bio.",
     tags: ["RAG", "LangGraph", "MCP", "Embeddings"],
@@ -45,7 +45,7 @@ export const apps: AppEntry[] = [
   {
     slug: "chefbot",
     name: "Personal Chef Agent",
-    status: "in progress",
+    status: "done",
     description:
       "A local AI chef that suggests recipes from ingredients you type or photograph, grounding suggestions in a live web search instead of hallucinating recipes.",
     tags: ["Agents", "LangGraph", "Tool use", "Multimodal"],
