@@ -66,12 +66,30 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ))}
         </div>
 
-        <div className="border-t border-hairline pt-6">
+        <div className="mb-8 border-t border-hairline pt-6">
           <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
             How it works
           </h2>
-          <p className="max-w-[540px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
+          <p className="max-w-[560px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
         </div>
+
+        {app.techStack && app.techStack.length > 0 && (
+          <div className="mb-8 border-t border-hairline pt-6">
+            <h2 className="mb-3 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
+              Tech stack
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {app.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-md border border-hairline px-2.5 py-1 text-[13px] text-muted"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         {app.videoUrl && (
           <div className="mb-8 border-t border-hairline pt-6">

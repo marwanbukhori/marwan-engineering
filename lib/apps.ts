@@ -16,6 +16,8 @@ export type AppEntry = {
   videoUrl?: string;
   /** Shown when a project card is expanded, framed as a README excerpt. */
   detail: string;
+  /** Real technologies used, shown only on the project detail page (not used for filtering). */
+  techStack?: string[];
 };
 
 export const apps: AppEntry[] = [
@@ -29,7 +31,16 @@ export const apps: AppEntry[] = [
     repoUrl: "https://github.com/marwanbukhori/marwan-resume-mcp",
     videoUrl: "/videos/resume-mcp-demo.mp4",
     detail:
-      "Resume and project docs are chunked, embedded, and retrieved top k. Answers cite the source section instead of guessing.",
+      "A LangGraph graph does retrieve then generate: the resume is chunked by heading, embedded once offline, and loaded into memory as a single NumPy matrix, no vector database, since it's one document. Each question is embedded and scored against every chunk with cosine similarity, the top 3 chunks are passed to the model, and the system prompt forces it to answer only from those excerpts and cite the section headings, or say it doesn't know rather than guess. Exposed as a FastMCP server (query_resume, list_resume_topics tools) so it can be added as a Claude connector, plus a plain POST /api/chat endpoint for non-MCP clients. The same code runs against Ollama locally or Vercel AI Gateway in production via one env var swap.",
+    techStack: [
+      "Python",
+      "LangGraph",
+      "FastMCP",
+      "Vercel AI Gateway",
+      "Ollama",
+      "NumPy",
+      "Docker",
+    ],
   },
   {
     slug: "chefbot",
@@ -39,8 +50,10 @@ export const apps: AppEntry[] = [
       "A local AI chef that suggests recipes from ingredients you type or photograph, grounding suggestions in a live web search instead of hallucinating recipes.",
     tags: ["Agents", "LangGraph", "Tool use", "Multimodal"],
     repoUrl: "https://github.com/marwanbukhori/chef-bot",
+    videoUrl: "/videos/chef-bot-demo.mp4",
     detail:
-      "A LangGraph tool-calling agent runs entirely on local Ollama models, calling a Tavily web-search tool to ground recipe suggestions in real results. Photos of ingredients go through a separate vision model first, which hands off a plain-text ingredient list to the same chef agent as a normal chat turn. Per-session memory supports natural follow-ups like \"make the first one vegetarian.\"",
+      "Built from the LangChain Academy Foundations of LangChain capstone, rebuilt to run entirely on local Ollama models. A LangChain tool-calling agent (qwen2.5:7b) calls a Tavily web-search tool to ground recipe suggestions in real results, with a LangGraph checkpointer keeping per-session conversation state so follow-ups like \"make the first one vegetarian\" work without repeating context. Ollama's vision models don't reliably support tool calling in the same request, so photos go through a separate vision-only model (qwen2.5vl:7b) first, which turns the image into a plain-text ingredient list that flows into the same agent as a normal chat turn. Ships as a Streamlit chat app, with a Jupyter notebook walking through the same logic lesson by lesson.",
+    techStack: ["Python", "LangChain", "LangGraph", "Ollama", "Tavily", "Streamlit"],
   },
   {
     slug: "mcp-tool-server",

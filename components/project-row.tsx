@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import type { KeyboardEvent } from "react";
 import type { AppEntry, AppStatus } from "@/lib/apps";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
@@ -9,11 +13,23 @@ const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
 };
 
 export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }) {
+  const router = useRouter();
   const statusStyle = STATUS_STYLE[app.status];
+  const href = `/projects/${app.slug}`;
+
+  function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      router.push(href);
+    }
+  }
 
   return (
     <div
-      className="animate-fade-in-up group -mx-4 rounded-lg border-t border-hairline px-4 py-5 transition-all duration-200 first:border-t-0 hover:-translate-y-0.5 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
+      tabIndex={0}
+      onClick={() => router.push(href)}
+      onKeyDown={handleKeyDown}
+      className="animate-fade-in-up group -mx-4 cursor-pointer rounded-lg border-t border-hairline px-4 py-5 transition-all duration-200 first:border-t-0 hover:-translate-y-0.5 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5">
@@ -38,19 +54,17 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
       </p>
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3 sm:ml-[30px]">
-        <Link
-          href={`/projects/${app.slug}`}
-          className="flex items-center gap-1 text-sm font-medium text-subtle transition-colors group-hover:text-white"
-        >
+        <span className="flex items-center gap-1 text-sm font-medium text-subtle transition-colors group-hover:text-white">
           Read more
           <span className="transition-transform group-hover:translate-x-1">→</span>
-        </Link>
+        </span>
 
         {app.demoPath || app.liveUrl ? (
           <Link
             href={app.demoPath ?? app.liveUrl!}
             target={app.liveUrl ? "_blank" : undefined}
             rel={app.liveUrl ? "noopener noreferrer" : undefined}
+            onClick={(e) => e.stopPropagation()}
             className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
             style={{ background: "var(--status-live)" }}
           >
@@ -62,6 +76,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
             href={app.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex items-center gap-1 text-sm font-medium text-subtle transition-colors group-hover:text-white"
           >
             View on GitHub
