@@ -71,7 +71,7 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
   }, []);
 
   return (
-    <div className="sticky top-4 z-20 mb-8 sm:mb-10">
+    <div className="sticky top-4 z-20 mb-14 sm:mb-20">
       <div
         ref={(el) => {
           cardRef.current = el;
