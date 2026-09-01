@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
 import type { AppEntry, AppStatus } from "@/lib/apps";
+import { useTilt3D } from "@/lib/use-tilt-3d";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
   live: { bg: "var(--status-live)", text: "#ffffff" },
@@ -17,6 +18,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
   const router = useRouter();
   const statusStyle = STATUS_STYLE[app.status];
   const href = `/projects/${app.slug}`;
+  const tiltRef = useTilt3D<HTMLDivElement>();
 
   function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (e.key === "Enter" || e.key === " ") {
@@ -27,10 +29,11 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
 
   return (
     <div
+      ref={tiltRef}
       tabIndex={0}
       onClick={() => router.push(href)}
       onKeyDown={handleKeyDown}
-      className="wood-box wood-box-interactive animate-fade-in-up group mb-4 cursor-pointer bg-surface px-4 py-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
+      className="wood-box wood-box-interactive animate-fade-in-up group mb-4 cursor-pointer bg-surface px-4 py-5 transition-[background-color,box-shadow] duration-200 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5">

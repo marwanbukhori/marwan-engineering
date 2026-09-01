@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { faqs } from "@/lib/faq";
+import { useTilt3D } from "@/lib/use-tilt-3d";
 
 function FaqRow({ item }: { item: (typeof faqs)[number] }) {
   const [open, setOpen] = useState(false);
@@ -41,9 +42,10 @@ export function FaqSection() {
   const [showAll, setShowAll] = useState(false);
   const visible = showAll ? faqs : faqs.slice(0, PREVIEW_COUNT);
   const remaining = faqs.length - PREVIEW_COUNT;
+  const tiltRef = useTilt3D<HTMLDivElement>(4);
 
   return (
-    <div className="wood-box animate-fade-in-up mb-10 bg-surface px-5 py-5 sm:px-6">
+    <div ref={tiltRef} className="wood-box animate-fade-in-up mb-10 bg-surface px-5 py-5 sm:px-6">
       <h2 className="wood-box-title mb-1 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
         Questions I get asked
       </h2>
