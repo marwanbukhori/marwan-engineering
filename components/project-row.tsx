@@ -43,7 +43,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
           </div>
         </div>
         <span
-          className="shrink-0 rounded-md px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
+          className="sketch-tag shrink-0 px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
           style={{ background: statusStyle.bg, color: statusStyle.text }}
         >
           {app.status}

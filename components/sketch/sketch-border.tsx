@@ -38,7 +38,7 @@ export function SketchBorder({ color, strokeWidth = 1.5, roughness = 1.8 }: Sket
       inset,
       size.width - inset * 2,
       size.height - inset * 2,
-      { stroke: color, strokeWidth, roughness, fill: "none" }
+      { stroke: color, strokeWidth, roughness }
     );
     svg.appendChild(rect);
   }, [size, color, strokeWidth, roughness]);
