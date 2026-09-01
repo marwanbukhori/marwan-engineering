@@ -44,7 +44,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Link>
 
         <div className="mb-3 flex flex-wrap items-baseline gap-3">
-          <h1 className="font-[family-name:var(--font-title)] text-[22px] font-semibold text-foreground sm:text-[26px]">
+          <h1 className="wood-box-title font-[family-name:var(--font-title)] text-[22px] font-semibold text-foreground sm:text-[26px]">
             {app.name}
           </h1>
           <span

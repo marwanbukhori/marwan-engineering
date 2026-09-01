@@ -10,26 +10,9 @@ export const metadata: Metadata = {
     "A running log of GenAI projects, notes, and apps I've built, documented as I build them.",
 };
 
-const themeInitScript = `
-(function () {
-  try {
-    var stored = localStorage.getItem("theme");
-    var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    if (theme === "dark") document.documentElement.dataset.theme = "dark";
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`h-full antialiased ${pixelFont.variable}`}
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
+    <html lang="en" className={`h-full antialiased ${pixelFont.variable}`}>
       <body className="min-h-full font-sans">{children}</body>
     </html>
   );

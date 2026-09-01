@@ -1,30 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f6f2;
-  --background-alt: #eee8e2;
-  --foreground: #221811;
-  --muted: #4a3c30;
-  --subtle: #7b6b5b;
-  --dim: #a3937f;
-  --hairline: #dad1c8;
-  --surface: #ffffff;
-  --chip: #eee8e2;
-  --accent: #45762d;
-  --accent-hover: #366022;
-  --status-live: #45762d;
-  --status-done: #c98a1d;
-  --status-progress: #6fa83f;
-  --status-progress-text: #16260c;
-  --status-planned: #7b95a8;
-  --status-idea: #7b6b5b;
-  --doodle-sun: #ffc94a;
-  --doodle-sun-deep: #a3620a;
-  --block-dark: #221811;
-  --grain-blend: multiply;
-}
-
-:root[data-theme="dark"] {
   --background: #1b130e;
   --background-alt: #2d221b;
   --foreground: #f6f4ee;
@@ -39,8 +15,11 @@
   --status-live: #62a63f;
   --status-done: #e8a530;
   --status-progress: #8fd15f;
+  --status-progress-text: #16260c;
   --status-planned: #6f8ca3;
   --status-idea: #9d8c7b;
+  --doodle-sun: #ffc94a;
+  --doodle-sun-deep: #a3620a;
   --block-dark: #120d09;
   --grain-blend: overlay;
 }
@@ -289,4 +268,39 @@ button:active {
       transparent 1px,
       transparent 84px
     );
+}
+
+.wood-box {
+  position: relative;
+  border: 4px solid var(--hairline);
+}
+
+.wood-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-right: 4px solid rgba(0, 0, 0, 0.35);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.35);
+}
+
+.wood-box-interactive:hover {
+  border-color: var(--accent);
+}
+
+.wood-box-title {
+  position: relative;
+  display: inline-block;
+  border: 3px solid var(--hairline);
+  background: var(--chip);
+  padding: 3px 10px;
+}
+
+.wood-box-title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-right: 3px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.3);
 }

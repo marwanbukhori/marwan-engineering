@@ -1,48 +1,12 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
-type Theme = "light" | "dark";
-
-function applyTheme(theme: Theme) {
-  if (theme === "dark") {
-    document.documentElement.dataset.theme = "dark";
-  } else {
-    delete document.documentElement.dataset.theme;
-  }
-  try {
-    localStorage.setItem("theme", theme);
-  } catch {
-    // localStorage unavailable, theme just won't persist
-  }
-}
-
 export function WeatherDoodle() {
-  const [theme, setTheme] = useState<Theme>("light");
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
-    }, 0);
-    return () => clearTimeout(timer);
-  }, []);
-
-  function toggle() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    applyTheme(next);
-  }
-
   return (
-    <button
-      onClick={toggle}
-      className="absolute top-3 right-3 origin-top-right scale-75 cursor-pointer opacity-90 transition-transform hover:scale-90 active:scale-[0.7] sm:top-4 sm:right-4 sm:scale-90 sm:hover:scale-100 sm:active:scale-[0.8]"
+    <div
+      className="absolute top-3 right-3 origin-top-right scale-75 opacity-90 sm:top-4 sm:right-4 sm:scale-90"
       style={{ animation: "doodle-bob 4s ease-in-out infinite" }}
-      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      aria-hidden="true"
     >
-      {theme === "dark" ? <MoonDoodle /> : <SunDoodle />}
-    </button>
+      <SunDoodle />
+    </div>
   );
 }
 
@@ -75,35 +39,6 @@ function SunDoodle() {
         strokeWidth="1.5"
         strokeLinecap="round"
         fill="none"
-      />
-    </svg>
-  );
-}
-
-function MoonDoodle() {
-  return (
-    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
-      <path
-        d="M32 12a15 15 0 1 0 8 22 12 12 0 0 1-8-22Z"
-        fill="var(--surface)"
-        stroke="var(--foreground)"
-        strokeWidth="1.75"
-        strokeLinejoin="round"
-      />
-      <circle cx="15" cy="14" r="1.3" fill="var(--accent)" style={{ animation: "doodle-twinkle 2.4s ease-in-out infinite" }} />
-      <circle
-        cx="10"
-        cy="24"
-        r="1"
-        fill="var(--accent)"
-        style={{ animation: "doodle-twinkle 2.4s ease-in-out 0.6s infinite" }}
-      />
-      <circle
-        cx="20"
-        cy="8"
-        r="0.9"
-        fill="var(--accent)"
-        style={{ animation: "doodle-twinkle 2.4s ease-in-out 1.2s infinite" }}
       />
     </svg>
   );
