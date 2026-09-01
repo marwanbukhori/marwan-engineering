@@ -8,6 +8,7 @@ import { FaqSection } from "@/components/faq-section";
 import { WeatherDoodle } from "@/components/weather-doodle";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
+import { FarmScene } from "@/components/farm-scene-loader";
 
 export default function Home() {
   return (
@@ -28,6 +29,8 @@ export default function Home() {
         </h1>
         <p className="mt-1.5 ml-[18px] text-sm text-white/55">{siteConfig.tagline}</p>
       </div>
+
+      <FarmScene />
 
       <CurrentWork />
 
