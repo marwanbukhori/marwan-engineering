@@ -1,10 +1,21 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio
+      .play()
+      .then(() => setPlaying(true))
+      .catch(() => {
+        // Autoplay blocked until the user interacts with the page — expected in most browsers.
+      });
+  }, []);
 
   function toggle() {
     const audio = audioRef.current;
@@ -20,7 +31,7 @@ export function BackgroundMusic() {
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={audioRef} src="/audio/harvest-theme-loop.mp3" loop preload="none" />
+      <audio ref={audioRef} src="/audio/spring-theme-loop.mp3" loop preload="none" />
       <div className="fixed right-4 bottom-4 z-30">
         <button
           onClick={toggle}
