@@ -32,7 +32,7 @@ export function ProjectsList() {
           <button
             key={tag}
             onClick={() => setFilter(tag)}
-            className={`sketch-tag cursor-pointer border px-3 py-1 text-[13px] transition-colors ${
+            className={`cursor-pointer border px-3 py-1 text-[13px] transition-colors ${
               filter === tag
                 ? "border-[var(--block-dark)] bg-[var(--block-dark)] text-white"
                 : "border-hairline text-subtle hover:border-[var(--block-dark)] hover:text-foreground"

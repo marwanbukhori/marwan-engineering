@@ -43,7 +43,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
           </div>
         </div>
         <span
-          className="sketch-tag shrink-0 px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
+          className="shrink-0 px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
           style={{ background: statusStyle.bg, color: statusStyle.text }}
         >
           {app.status}
@@ -66,7 +66,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
             target={app.liveUrl ? "_blank" : undefined}
             rel={app.liveUrl ? "noopener noreferrer" : undefined}
             onClick={(e) => e.stopPropagation()}
-            className="sketch-btn inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
+            className="inline-flex items-center gap-1.5 border-2 border-[var(--hairline)] px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
             style={{ background: "var(--status-live)" }}
           >
             <span className="status-dot-active h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />
@@ -94,7 +94,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
         {app.tags.map((tag) => (
           <span
             key={tag}
-            className="sketch-tag bg-chip px-2 py-0.5 text-[11px] text-subtle transition-colors group-hover:bg-white/10 group-hover:text-white/60"
+            className="border border-hairline bg-chip px-2 py-0.5 text-[11px] text-subtle transition-colors group-hover:bg-white/10 group-hover:text-white/60"
           >
             {tag}
           </span>

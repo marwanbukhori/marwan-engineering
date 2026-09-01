@@ -200,29 +200,7 @@ button:focus-visible {
   animation: marquee-scroll 18s linear infinite;
 }
 
-.sketch-underline {
-  text-decoration: underline wavy;
-  text-decoration-color: var(--status-done);
-  text-underline-offset: 4px;
-}
-
-.sketch-tag {
-  border-radius: 0;
-  transform: rotate(-0.6deg);
-}
-
-.sketch-tag:nth-child(even) {
-  border-radius: 0;
-  transform: rotate(0.6deg);
-}
-
-.sketch-btn {
-  border-radius: 0;
-  transform: rotate(-1deg);
-}
-
-button,
-a.sketch-btn {
+button {
   transition:
     transform 0.08s ease,
     filter 0.08s ease;
@@ -230,18 +208,6 @@ a.sketch-btn {
 
 button:active {
   transform: translateY(2px);
-}
-
-.sketch-tag:active {
-  transform: translateY(2px) rotate(-0.6deg);
-}
-
-.sketch-tag:nth-child(even):active {
-  transform: translateY(2px) rotate(0.6deg);
-}
-
-.sketch-btn:active {
-  transform: translateY(2px) rotate(-1deg);
 }
 
 .wood-grain {

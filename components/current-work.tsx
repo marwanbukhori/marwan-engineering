@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { PhotoCarousel } from "@/components/photo-carousel";
-import { SketchDivider } from "@/components/sketch/sketch-divider";
-import { PixelTree } from "@/components/sketch/pixel-tree";
 
 type TimelineItem = {
   period: string;
@@ -61,13 +59,10 @@ export function CurrentWork() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <SketchDivider className="mt-8 mb-8" />
-      <div className="animate-fade-in-up mb-10" style={{ animationDelay: "80ms" }}>
-        <h2 className="mb-4 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
-          <PixelTree />
-          Background
-        </h2>
+    <div className="animate-fade-in-up mb-10 border-t border-hairline pt-8" style={{ animationDelay: "80ms" }}>
+      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
+        Background
+      </h2>
         <PhotoCarousel />
 
         <button onClick={() => setOpen((v) => !v)} className="w-full cursor-pointer text-left" aria-expanded={open}>
@@ -121,7 +116,6 @@ export function CurrentWork() {
             </div>
           </div>
         </button>
-      </div>
-    </>
+    </div>
   );
 }
