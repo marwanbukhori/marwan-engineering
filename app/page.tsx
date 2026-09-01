@@ -49,7 +49,7 @@ export default function Home() {
         <EventsSection />
       </div>
 
-      <div className="mt-2 border-t border-hairline pt-8">
+      <div className="mt-8">
         <FaqSection />
       </div>
 

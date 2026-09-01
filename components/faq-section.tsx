@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { faqs } from "@/lib/faq";
+import { SketchBorder } from "@/components/sketch/sketch-border";
 
 function FaqRow({ item }: { item: (typeof faqs)[number] }) {
   const [open, setOpen] = useState(false);
@@ -43,14 +44,15 @@ export function FaqSection() {
   const remaining = faqs.length - PREVIEW_COUNT;
 
   return (
-    <div className="animate-fade-in-up mb-10">
+    <div className="animate-fade-in-up relative mb-10 rounded-xl px-5 py-5 sm:px-6">
+      <SketchBorder color="var(--status-done)" strokeWidth={1.5} roughness={1.8} />
       <h2 className="mb-1 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
         Questions I get asked
       </h2>
       <p className="mb-4 text-[14px] text-subtle">
         Quick, honest answers for anyone reviewing my resume.
       </p>
-      <div className="border-t border-hairline">
+      <div>
         {visible.map((item) => (
           <FaqRow key={item.question} item={item} />
         ))}
