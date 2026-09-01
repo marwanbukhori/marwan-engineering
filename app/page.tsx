@@ -10,12 +10,14 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
 import { SketchBorder } from "@/components/sketch/sketch-border";
 import { SketchDivider } from "@/components/sketch/sketch-divider";
+import { PixelFence } from "@/components/sketch/pixel-fence";
+import { PixelTree } from "@/components/sketch/pixel-tree";
 
 export default function Home() {
   return (
     <main className="mx-auto max-w-[880px] px-5 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-20">
       <div
-        className="animate-fade-in-up sticky top-4 z-20 mb-8 overflow-hidden px-5 py-5 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] sm:mb-10 sm:px-6"
+        className="animate-fade-in-up wood-grain sticky top-4 z-20 mb-8 overflow-hidden px-5 py-5 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] sm:mb-10 sm:px-6"
         style={{ background: "var(--block-dark)" }}
       >
         <SketchBorder color="#f2f0ea" strokeWidth={2} roughness={1.6} />
@@ -35,7 +37,8 @@ export default function Home() {
       <CurrentWork />
 
       <SketchDivider className="mt-8 mb-8" />
-      <div className="mb-4">
+      <div className="mb-4 flex items-center gap-2">
+        <PixelTree />
         <h2 className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
           Projects
         </h2>
@@ -53,6 +56,7 @@ export default function Home() {
         <FaqSection />
       </div>
 
+      <PixelFence className="mt-10" />
       <div
         className="animate-fade-in-up"
         style={{ animationDelay: `${(apps.length + 2) * 80}ms` }}

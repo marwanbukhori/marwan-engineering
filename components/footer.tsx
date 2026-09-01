@@ -46,7 +46,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="mt-12 px-5 py-7 sm:px-6 sm:py-8" style={{ background: "var(--block-dark)" }}>
+    <footer className="wood-grain mt-12 px-5 py-7 sm:px-6 sm:py-8" style={{ background: "var(--block-dark)" }}>
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
         <div className="flex flex-wrap gap-x-5 gap-y-2">
           {links.map(({ label, href, Icon }) => (

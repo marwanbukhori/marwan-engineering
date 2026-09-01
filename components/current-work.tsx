@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PhotoCarousel } from "@/components/photo-carousel";
 import { SketchDivider } from "@/components/sketch/sketch-divider";
+import { PixelTree } from "@/components/sketch/pixel-tree";
 
 type TimelineItem = {
   period: string;
@@ -63,7 +64,8 @@ export function CurrentWork() {
     <>
       <SketchDivider className="mt-8 mb-8" />
       <div className="animate-fade-in-up mb-10" style={{ animationDelay: "80ms" }}>
-        <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
+        <h2 className="mb-4 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
+          <PixelTree />
           Background
         </h2>
         <PhotoCarousel />
