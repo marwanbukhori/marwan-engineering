@@ -38,7 +38,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
           <span className="text-sm text-dim tabular-nums transition-colors group-hover:text-white/35">
             {String(index).padStart(2, "0")}
           </span>
-          <div className="font-[family-name:var(--font-title)] text-[16px] font-semibold text-foreground transition-colors group-hover:text-white sm:text-[17px]">
+          <div className="sketch-underline font-[family-name:var(--font-title)] text-[16px] font-semibold text-foreground transition-colors group-hover:text-white sm:text-[17px]">
             {app.name}
           </div>
         </div>
@@ -66,7 +66,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
             target={app.liveUrl ? "_blank" : undefined}
             rel={app.liveUrl ? "noopener noreferrer" : undefined}
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
+            className="sketch-btn inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
             style={{ background: "var(--status-live)" }}
           >
             <span className="status-dot-active h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />
@@ -94,7 +94,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
         {app.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-md bg-chip px-2 py-0.5 text-[11px] text-subtle transition-colors group-hover:bg-white/10 group-hover:text-white/60"
+            className="sketch-tag bg-chip px-2 py-0.5 text-[11px] text-subtle transition-colors group-hover:bg-white/10 group-hover:text-white/60"
           >
             {tag}
           </span>
