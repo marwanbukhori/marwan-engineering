@@ -8,14 +8,16 @@ import { FaqSection } from "@/components/faq-section";
 import { WeatherDoodle } from "@/components/weather-doodle";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
+import { SketchBorder } from "@/components/sketch/sketch-border";
 
 export default function Home() {
   return (
     <main className="mx-auto max-w-[880px] px-5 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-20">
       <div
-        className="animate-fade-in-up sticky top-4 z-20 mb-8 overflow-hidden rounded-xl px-5 py-5 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] sm:mb-10 sm:px-6"
+        className="animate-fade-in-up relative sticky top-4 z-20 mb-8 overflow-hidden rounded-xl px-5 py-5 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] sm:mb-10 sm:px-6"
         style={{ background: "var(--block-dark)" }}
       >
+        <SketchBorder color="#f2f0ea" strokeWidth={2} roughness={1.6} />
         <ScrollProgress />
         <WeatherDoodle />
         <h1 className="flex flex-wrap items-center gap-2.5 font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-white sm:text-2xl">
