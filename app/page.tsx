@@ -9,6 +9,7 @@ import { WeatherDoodle } from "@/components/weather-doodle";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Footer } from "@/components/footer";
 import { SketchBorder } from "@/components/sketch/sketch-border";
+import { SketchDivider } from "@/components/sketch/sketch-divider";
 
 export default function Home() {
   return (
@@ -33,7 +34,8 @@ export default function Home() {
 
       <CurrentWork />
 
-      <div className="mb-4 border-t border-hairline pt-8">
+      <SketchDivider className="mt-8 mb-4" />
+      <div className="mb-4">
         <h2 className="font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
           Projects
         </h2>
@@ -41,7 +43,8 @@ export default function Home() {
 
       <ProjectsList />
 
-      <div className="mt-12 border-t border-hairline pt-8">
+      <SketchDivider className="mt-12 mb-8" />
+      <div>
         <EngineeringBlog />
         <EventsSection />
       </div>

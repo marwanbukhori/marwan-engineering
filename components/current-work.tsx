@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PhotoCarousel } from "@/components/photo-carousel";
+import { SketchDivider } from "@/components/sketch/sketch-divider";
 
 type TimelineItem = {
   period: string;
@@ -59,63 +60,66 @@ export function CurrentWork() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="animate-fade-in-up mb-10 border-t border-hairline pt-8" style={{ animationDelay: "80ms" }}>
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
-        Background
-      </h2>
-      <PhotoCarousel />
+    <>
+      <SketchDivider className="mt-8 mb-8" />
+      <div className="animate-fade-in-up mb-10" style={{ animationDelay: "80ms" }}>
+        <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
+          Background
+        </h2>
+        <PhotoCarousel />
 
-      <button onClick={() => setOpen((v) => !v)} className="w-full cursor-pointer text-left" aria-expanded={open}>
-        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-          <div>
-            <div className="text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
-              Currently
+        <button onClick={() => setOpen((v) => !v)} className="w-full cursor-pointer text-left" aria-expanded={open}>
+          <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+            <div>
+              <div className="text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
+                Currently
+              </div>
+              <div className="mt-0.5 font-[family-name:var(--font-title)] text-[16px] text-foreground">
+                Building Nexus, an AI platform that turns natural language into audited network
+                commands, at Verus Virtus.
+              </div>
             </div>
-            <div className="mt-0.5 font-[family-name:var(--font-title)] text-[16px] text-foreground">
-              Building Nexus, an AI platform that turns natural language into audited network
-              commands, at Verus Virtus.
-            </div>
-          </div>
-          <span className="flex shrink-0 items-center gap-1.5 text-[13px] font-medium text-subtle">
-            {open ? "Show less" : "Read more"}
-            <span
-              className="transition-transform duration-300"
-              style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
-              aria-hidden
-            >
-              ↓
+            <span className="flex shrink-0 items-center gap-1.5 text-[13px] font-medium text-subtle">
+              {open ? "Show less" : "Read more"}
+              <span
+                className="transition-transform duration-300"
+                style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+                aria-hidden
+              >
+                ↓
+              </span>
             </span>
-          </span>
-        </div>
+          </div>
 
-        <div
-          className="grid transition-[grid-template-rows] duration-300 ease-out"
-          style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
-        >
-          <div className="overflow-hidden">
-            <div className="relative mt-5 flex flex-col gap-6 border-t border-hairline pt-5">
-              <div className="absolute top-5 bottom-1 left-[3px] w-px bg-hairline" />
-              {timeline.map((item, i) => {
-                const isLast = i === timeline.length - 1;
-                return (
-                  <div key={item.period} className="relative pl-6">
-                    <span
-                      className={`absolute top-1.5 left-0 h-[7px] w-[7px] rounded-full ${isLast ? "status-dot-active" : ""}`}
-                      style={{ background: isLast ? "var(--status-live)" : "var(--dim)" }}
-                    />
-                    <div className="text-[13px] text-subtle">{item.period}</div>
-                    <div className="mt-0.5 flex items-center gap-2">
-                      <CompanyMark item={item} />
-                      <div className="text-[14px] font-medium text-foreground">{item.role}</div>
+          <div
+            className="grid transition-[grid-template-rows] duration-300 ease-out"
+            style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+          >
+            <div className="overflow-hidden">
+              <div className="relative mt-5 flex flex-col gap-6 border-t border-hairline pt-5">
+                <div className="absolute top-5 bottom-1 left-[3px] w-px bg-hairline" />
+                {timeline.map((item, i) => {
+                  const isLast = i === timeline.length - 1;
+                  return (
+                    <div key={item.period} className="relative pl-6">
+                      <span
+                        className={`absolute top-1.5 left-0 h-[7px] w-[7px] rounded-full ${isLast ? "status-dot-active" : ""}`}
+                        style={{ background: isLast ? "var(--status-live)" : "var(--dim)" }}
+                      />
+                      <div className="text-[13px] text-subtle">{item.period}</div>
+                      <div className="mt-0.5 flex items-center gap-2">
+                        <CompanyMark item={item} />
+                        <div className="text-[14px] font-medium text-foreground">{item.role}</div>
+                      </div>
+                      <div className="mt-0.5 text-[13px] leading-relaxed text-muted">{item.detail}</div>
                     </div>
-                    <div className="mt-0.5 text-[13px] leading-relaxed text-muted">{item.detail}</div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </button>
-    </div>
+        </button>
+      </div>
+    </>
   );
 }
