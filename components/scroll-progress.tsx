@@ -16,7 +16,7 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <div className="absolute right-0 bottom-0 left-0 h-[6px] overflow-hidden rounded-b-xl bg-white/10">
+    <div className="absolute right-0 bottom-0 left-0 h-[6px] overflow-hidden bg-white/10">
       <div
         className="h-full transition-[width] duration-150 ease-out"
         style={{ width: `${pct}%`, background: "var(--status-live)" }}

@@ -44,7 +44,7 @@ export function FaqSection() {
   const remaining = faqs.length - PREVIEW_COUNT;
 
   return (
-    <div className="animate-fade-in-up relative mb-10 rounded-xl px-5 py-5 sm:px-6">
+    <div className="animate-fade-in-up relative mb-10 px-5 py-5 sm:px-6">
       <SketchBorder color="var(--status-done)" strokeWidth={1.5} roughness={1.8} />
       <h2 className="mb-1 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
         Questions I get asked

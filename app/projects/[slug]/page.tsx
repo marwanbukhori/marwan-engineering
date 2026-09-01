@@ -48,7 +48,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {app.name}
           </h1>
           <span
-            className="shrink-0 rounded-md px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
+            className="shrink-0 px-2 py-0.5 text-[11px] font-semibold tracking-[0.02em] uppercase"
             style={{ background: statusStyle.bg, color: statusStyle.text }}
           >
             {app.status}
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="mb-8 flex flex-wrap gap-2">
           {app.tags.map((tag) => (
-            <span key={tag} className="rounded-md bg-chip px-2.5 py-1 text-[13px] text-subtle">
+            <span key={tag} className="bg-chip px-2.5 py-1 text-[13px] text-subtle">
               {tag}
             </span>
           ))}
@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {app.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-hairline px-2.5 py-1 text-[13px] text-muted"
+                  className="border border-hairline px-2.5 py-1 text-[13px] text-muted"
                 >
                   {tech}
                 </span>
@@ -102,7 +102,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               src={app.videoUrl}
               controls
               playsInline
-              className="w-full max-w-[560px] rounded-lg border border-hairline"
+              className="w-full max-w-[560px] border border-hairline"
             />
           </div>
         )}
@@ -111,7 +111,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           {app.demoPath && (
             <Link
               href={app.demoPath}
-              className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
               style={{ background: "var(--status-live)" }}
             >
               <span className="status-dot-active h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />
@@ -123,7 +123,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               href={app.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-semibold text-white transition-[filter] hover:brightness-95"
               style={{ background: "var(--status-live)" }}
             >
               <span className="status-dot-active h-1.5 w-1.5 rounded-full bg-[#ff3b30]" />

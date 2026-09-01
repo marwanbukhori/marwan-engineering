@@ -17,7 +17,7 @@ export function EventsSection() {
                 <img
                   src={event.image}
                   alt={event.title}
-                  className="aspect-[4/3] w-full rounded-lg object-cover"
+                  className="aspect-[4/3] w-full object-cover"
                 />
                 <div className="mt-2.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                   <div className="text-[15px] font-semibold text-foreground">{event.title}</div>

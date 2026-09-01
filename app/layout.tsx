@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Archivo, Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
-const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo" });
-const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage" });
-const sourceSerif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif" });
+const pixelFont = Press_Start_2P({ weight: "400", subsets: ["latin"], variable: "--font-pixel" });
 
 export const metadata: Metadata = {
   title: "Marwan Bukhori: AI Engineering Hub",
@@ -27,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full antialiased ${archivo.variable} ${bricolage.variable} ${sourceSerif.variable}`}
+      className={`h-full antialiased ${pixelFont.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

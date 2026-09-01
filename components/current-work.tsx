@@ -48,7 +48,7 @@ function CompanyMark({ item }: { item: TimelineItem }) {
   }
   return (
     <span
-      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-chip text-[10px] font-semibold text-subtle"
+      className="flex h-5 w-5 shrink-0 items-center justify-center bg-chip text-[10px] font-semibold text-subtle"
       aria-hidden
     >
       {item.company.charAt(0)}

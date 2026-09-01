@@ -30,7 +30,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
       tabIndex={0}
       onClick={() => router.push(href)}
       onKeyDown={handleKeyDown}
-      className="animate-fade-in-up group -mx-4 cursor-pointer rounded-lg border-t border-hairline px-4 py-5 transition-all duration-200 first:border-t-0 hover:-translate-y-0.5 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
+      className="animate-fade-in-up group -mx-4 cursor-pointer border-t border-hairline px-4 py-5 transition-all duration-200 first:border-t-0 hover:-translate-y-0.5 hover:bg-[var(--block-dark)] hover:shadow-[0_10px_28px_-10px_rgba(0,0,0,0.35)] sm:py-6"
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5">

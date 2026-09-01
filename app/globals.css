@@ -1,46 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf9f5;
-  --background-alt: #f2f0e8;
-  --foreground: #1c1b18;
-  --muted: #55524a;
-  --subtle: #8a8676;
-  --dim: #a8a493;
-  --hairline: #e4e0d3;
+  --background: #f8f6f2;
+  --background-alt: #eee8e2;
+  --foreground: #221811;
+  --muted: #4a3c30;
+  --subtle: #7b6b5b;
+  --dim: #a3937f;
+  --hairline: #dad1c8;
   --surface: #ffffff;
-  --chip: #f2f0e8;
-  --accent: #4a6b52;
-  --accent-hover: #5c8064;
-  --status-live: #1f8a53;
-  --status-done: #6b4c93;
-  --status-progress: #f5b400;
-  --status-progress-text: #3a2900;
-  --status-planned: #2563eb;
-  --status-idea: #8a8676;
+  --chip: #eee8e2;
+  --accent: #45762d;
+  --accent-hover: #366022;
+  --status-live: #45762d;
+  --status-done: #c98a1d;
+  --status-progress: #6fa83f;
+  --status-progress-text: #16260c;
+  --status-planned: #7b95a8;
+  --status-idea: #7b6b5b;
   --doodle-sun: #ffc94a;
   --doodle-sun-deep: #a3620a;
-  --block-dark: #211f1b;
+  --block-dark: #221811;
   --grain-blend: multiply;
 }
 
 :root[data-theme="dark"] {
-  --background: #17160f;
-  --background-alt: #1e1c15;
-  --foreground: #f2f0ea;
-  --muted: #b8b3a6;
-  --subtle: #8f8a7c;
-  --dim: #6b665a;
-  --hairline: #322f26;
-  --surface: #211f19;
-  --chip: #2a2721;
-  --accent: #7fa38a;
-  --accent-hover: #96b89e;
-  --status-live: #3ea876;
-  --status-done: #9d7fc4;
-  --status-planned: #5b8cf0;
-  --status-idea: #8f8a7c;
-  --block-dark: #2c2a24;
+  --background: #1b130e;
+  --background-alt: #2d221b;
+  --foreground: #f6f4ee;
+  --muted: #c9bcae;
+  --subtle: #9d8c7b;
+  --dim: #6b5c4d;
+  --hairline: #54453b;
+  --surface: #2d221b;
+  --chip: #362d26;
+  --accent: #62a63f;
+  --accent-hover: #7cc453;
+  --status-live: #62a63f;
+  --status-done: #e8a530;
+  --status-progress: #8fd15f;
+  --status-planned: #6f8ca3;
+  --status-idea: #9d8c7b;
+  --block-dark: #120d09;
   --grain-blend: overlay;
 }
 
@@ -56,9 +57,9 @@
   --color-chip: var(--chip);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --font-sans: var(--font-archivo), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-archivo), sans-serif;
-  --font-title: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-pixel), monospace;
+  --font-display: var(--font-pixel), monospace;
+  --font-title: var(--font-pixel), monospace;
 }
 
 body {
@@ -227,16 +228,39 @@ button:focus-visible {
 }
 
 .sketch-tag {
-  border-radius: 3px 9px 4px 8px;
+  border-radius: 0;
   transform: rotate(-0.6deg);
 }
 
 .sketch-tag:nth-child(even) {
-  border-radius: 8px 4px 9px 3px;
+  border-radius: 0;
   transform: rotate(0.6deg);
 }
 
 .sketch-btn {
-  border-radius: 3px 12px 4px 10px;
+  border-radius: 0;
   transform: rotate(-1deg);
+}
+
+button,
+a.sketch-btn {
+  transition:
+    transform 0.08s ease,
+    filter 0.08s ease;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+.sketch-tag:active {
+  transform: translateY(2px) rotate(-0.6deg);
+}
+
+.sketch-tag:nth-child(even):active {
+  transform: translateY(2px) rotate(0.6deg);
+}
+
+.sketch-btn:active {
+  transform: translateY(2px) rotate(-1deg);
 }
