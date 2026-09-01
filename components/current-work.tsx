@@ -72,12 +72,10 @@ export function CurrentWork() {
                 Currently
               </div>
               <div className="mt-0.5 font-[family-name:var(--font-title)] text-[16px] text-foreground">
-                Building Nexus, an AI platform that turns natural language into audited network
-                commands, at Verus Virtus.
-              </div>
+                Currently open to for immmediate opportunities. Venturing into Agentic AI with Langchain, AWS Clouds and pragmatic AI-Assisted Software Development.</div>
             </div>
             <span className="flex shrink-0 items-center gap-1.5 text-[13px] font-medium text-subtle">
-              {open ? "Show less" : "Read more"}
+              {open ? "Show less" : "Read more information"}
               <span
                 className="transition-transform duration-300"
                 style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}

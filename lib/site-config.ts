@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "marwanbukhori",
-  tagline: "AI Engineer, building in Kuala Lumpur",
+  tagline: "Software Engineer, building AI Applications, AWS Cloud & Software Development",
   resumeUrl: "/marwan-bukhori-resume.pdf",
   mainPortfolioUrl: "https://marwanbukhori.com",
   socials: {

@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { WeatherDoodle } from "@/components/weather-doodle";
 import { useTilt3D } from "@/lib/use-tilt-3d";
+import { siteConfig } from "@/lib/site-config";
 
 export function IntroCard({ name, tagline }: { name: string; tagline: string }) {
   const tiltRef = useTilt3D<HTMLDivElement>(4);
@@ -42,9 +43,15 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
           <span aria-hidden>🇲🇾</span>
         </h1>
         <p className="mt-1.5 ml-[18px] text-sm text-white/55">{tagline}</p>
-        <p className="mt-2 ml-[18px] text-[11px] tracking-[0.08em] text-white/35 uppercase">
-          Welcome to the farm 🌾
-        </p>
+        <a
+          href={siteConfig.resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="wood-box wood-box-interactive mt-3 ml-[18px] inline-flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-bold tracking-[0.08em] uppercase transition-transform active:translate-y-0.5"
+          style={{ background: "var(--doodle-sun)", color: "var(--block-dark)" }}
+        >
+          Download resume ↓
+        </a>
       </div>
     </div>
   );

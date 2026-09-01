@@ -15,6 +15,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`h-full antialiased ${pixelFont.variable}`}>
       <body className="min-h-full font-sans">
+        <div className="page-bg-image" aria-hidden="true" />
         {children}
         <BackgroundMusic />
       </body>
