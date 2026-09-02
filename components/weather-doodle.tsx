@@ -1,7 +1,9 @@
-export function WeatherDoodle() {
+export function WeatherDoodle({ compact = false }: { compact?: boolean }) {
   return (
     <div
-      className="absolute top-3 right-3 origin-top-right scale-75 opacity-90 sm:top-4 sm:right-4 sm:scale-90"
+      className={`absolute origin-top-right opacity-90 transition-[transform] duration-300 ${
+        compact ? "top-1.5 right-2 scale-[0.45]" : "top-3 right-3 scale-75 sm:top-4 sm:right-4 sm:scale-90"
+      }`}
       style={{ animation: "doodle-bob 4s ease-in-out infinite" }}
       aria-hidden="true"
     >

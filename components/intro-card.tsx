@@ -45,7 +45,7 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
         style={{ background: "var(--block-dark)" }}
       >
         <ScrollProgress />
-        <WeatherDoodle />
+        <WeatherDoodle compact={collapsed} />
         <h1 className="flex flex-wrap items-center gap-2.5 font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-white sm:text-2xl">
           <span
             className="status-dot-active inline-block h-2 w-2 rounded-full"
