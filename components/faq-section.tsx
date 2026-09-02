@@ -27,7 +27,7 @@ function FaqRow({ item }: { item: (typeof faqs)[number] }) {
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <p className="mt-2.5 max-w-[560px] text-[14px] leading-relaxed text-muted">
+          <p className="mt-2.5 max-w-[640px] text-[14px] leading-relaxed text-muted">
             {item.answer}
           </p>
         </div>

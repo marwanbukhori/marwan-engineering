@@ -53,7 +53,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
         </span>
       </div>
 
-      <p className="mt-1.5 max-w-[480px] text-[15px] leading-relaxed text-muted transition-colors group-hover:text-white/65 sm:ml-[30px]">
+      <p className="mt-1.5 max-w-[640px] text-[15px] leading-relaxed text-muted transition-colors group-hover:text-white/65 sm:ml-[30px]">
         {app.description}
       </p>
 

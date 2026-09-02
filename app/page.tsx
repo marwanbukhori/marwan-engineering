@@ -9,7 +9,7 @@ import { IntroCard } from "@/components/intro-card";
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-[880px] px-5 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-20">
+    <main className="mx-auto max-w-[880px] px-5 py-10 sm:px-8 sm:py-14 lg:max-w-[1040px] lg:px-12 lg:py-20">
       <IntroCard name={siteConfig.name} tagline={siteConfig.tagline} />
 
       <AboutTeaser />

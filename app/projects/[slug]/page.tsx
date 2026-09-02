@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16">
+      <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:max-w-[860px]">
         <Link href="/" className="mb-8 inline-block text-sm text-subtle hover:text-accent">
           ← Home
         </Link>
@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </span>
         </div>
 
-        <p className="mb-8 max-w-[540px] text-[17px] leading-relaxed text-muted">
+        <p className="mb-8 max-w-[680px] text-[17px] leading-relaxed text-muted">
           {app.description}
         </p>
 
@@ -71,7 +71,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
             How it works
           </h2>
-          <p className="max-w-[560px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
+          <p className="max-w-[680px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
         </div>
 
         {app.techStack && app.techStack.length > 0 && (
@@ -102,7 +102,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               src={app.videoUrl}
               controls
               playsInline
-              className="w-full max-w-[560px] border border-hairline"
+              className="w-full max-w-[680px] border border-hairline"
             />
           </div>
         )}

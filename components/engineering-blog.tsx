@@ -21,7 +21,7 @@ export function EngineeringBlog() {
                 </div>
                 <div className="shrink-0 text-[13px] text-subtle">{post.date}</div>
               </div>
-              <p className="max-w-[520px] text-[14px] leading-relaxed text-muted">{post.excerpt}</p>
+              <p className="max-w-[640px] text-[14px] leading-relaxed text-muted">{post.excerpt}</p>
             </a>
           ))}
         </div>

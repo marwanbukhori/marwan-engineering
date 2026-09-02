@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16">
+      <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:max-w-[860px]">
         <Link href="/" className="mb-8 inline-block text-sm text-subtle hover:text-accent">
           ← Home
         </Link>
