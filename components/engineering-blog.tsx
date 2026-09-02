@@ -3,9 +3,6 @@ import { blogPosts } from "@/lib/blog";
 export function EngineeringBlog() {
   return (
     <div className="mb-10">
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
-        Writing
-      </h2>
       {blogPosts.length === 0 ? (
         <p className="text-[14px] text-dim">Nothing published yet. Check back soon.</p>
       ) : (

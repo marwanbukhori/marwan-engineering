@@ -3,9 +3,6 @@ import { certifications } from "@/lib/certifications";
 export function CertificationsSection() {
   return (
     <div className="mb-10">
-      <h2 className="mb-4 font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
-        Certifications
-      </h2>
       {certifications.length === 0 ? (
         <p className="text-[14px] text-dim">No certifications yet. Check back soon.</p>
       ) : (

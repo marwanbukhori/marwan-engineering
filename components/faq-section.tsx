@@ -36,36 +36,19 @@ function FaqRow({ item }: { item: (typeof faqs)[number] }) {
   );
 }
 
-const PREVIEW_COUNT = 2;
-
 export function FaqSection() {
-  const [showAll, setShowAll] = useState(false);
-  const visible = showAll ? faqs : faqs.slice(0, PREVIEW_COUNT);
-  const remaining = faqs.length - PREVIEW_COUNT;
   const tiltRef = useTilt3D<HTMLDivElement>(4);
 
   return (
     <div ref={tiltRef} className="wood-box animate-fade-in-up mb-10 bg-surface px-5 py-5 sm:px-6">
-      <h2 className="wood-box-title mb-1 font-[family-name:var(--font-display)] text-lg font-bold text-foreground sm:text-xl">
-        Questions I get asked
-      </h2>
       <p className="mb-4 text-[14px] text-subtle">
         Quick, honest answers for anyone reviewing my resume.
       </p>
       <div>
-        {visible.map((item) => (
+        {faqs.map((item) => (
           <FaqRow key={item.question} item={item} />
         ))}
       </div>
-      {!showAll && remaining > 0 && (
-        <button
-          onClick={() => setShowAll(true)}
-          className="mt-3 flex cursor-pointer items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover"
-        >
-          See more ({remaining} more)
-          <span aria-hidden>→</span>
-        </button>
-      )}
     </div>
   );
 }
