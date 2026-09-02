@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { apps } from "@/lib/apps";
 import { ProjectRow } from "@/components/project-row";
+import { ProjectFilterBar } from "@/components/project-filter-bar";
 
 export function ProjectsList() {
   const [filter, setFilter] = useState<string | null>(null);
@@ -17,31 +18,7 @@ export function ProjectsList() {
 
   return (
     <div>
-      <div className="mb-6 flex flex-wrap gap-2">
-        <button
-          onClick={() => setFilter(null)}
-          className={`sketch-tag cursor-pointer border px-3 py-1 text-[13px] transition-colors ${
-            filter === null
-              ? "border-[var(--block-dark)] bg-[var(--block-dark)] text-white"
-              : "border-hairline text-subtle hover:border-[var(--block-dark)] hover:text-foreground"
-          }`}
-        >
-          All
-        </button>
-        {tags.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setFilter(tag)}
-            className={`cursor-pointer border px-3 py-1 text-[13px] transition-colors ${
-              filter === tag
-                ? "border-[var(--block-dark)] bg-[var(--block-dark)] text-white"
-                : "border-hairline text-subtle hover:border-[var(--block-dark)] hover:text-foreground"
-            }`}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
+      <ProjectFilterBar tags={tags} active={filter} onSelect={setFilter} />
 
       {filtered.length === 0 ? (
         <p className="text-[14px] text-dim">No projects with this tag yet.</p>

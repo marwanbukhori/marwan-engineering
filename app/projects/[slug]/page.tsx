@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const statusStyle = STATUS_STYLE[app.status];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen text-foreground">
       <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:max-w-[860px]">
         <Link href="/" className="mb-8 inline-block text-sm text-subtle hover:text-accent">
           ← Home
@@ -145,6 +145,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           )}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
