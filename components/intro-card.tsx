@@ -25,16 +25,11 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
 
   useEffect(() => {
     function onScroll() {
-      const isMobile = window.matchMedia("(max-width: 639px)").matches;
-      setCollapsed(isMobile && window.scrollY > 24);
+      setCollapsed(window.scrollY > 24);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -44,8 +39,8 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
           cardRef.current = el;
           tiltRef.current = el;
         }}
-        className={`wood-box wood-grain relative overflow-hidden shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] transition-[padding] duration-300 sm:px-6 sm:py-5 ${
-          collapsed ? "px-4 py-2.5" : "px-5 py-5"
+        className={`wood-box wood-grain relative overflow-hidden shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] transition-[padding] duration-300 ${
+          collapsed ? "px-4 py-2.5 sm:px-5" : "px-5 py-5 sm:px-6"
         }`}
         style={{ background: "var(--block-dark)" }}
       >
@@ -60,7 +55,7 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
           <span aria-hidden>🇲🇾</span>
         </h1>
         <div
-          className="grid transition-[grid-template-rows] duration-300 ease-out sm:!grid-rows-[1fr]"
+          className="grid transition-[grid-template-rows] duration-300 ease-out"
           style={{ gridTemplateRows: collapsed ? "0fr" : "1fr" }}
         >
           <div className="overflow-hidden">

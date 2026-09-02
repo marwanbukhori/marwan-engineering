@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 import { ProjectsList } from "@/components/projects-list";
 import { CurrentWork } from "@/components/current-work";
 import { EngineeringBlog } from "@/components/engineering-blog";
-import { EventsSection } from "@/components/events-section";
+import { CertificationsSection } from "@/components/certifications-section";
 import { FaqSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
 import { IntroCard } from "@/components/intro-card";
@@ -25,7 +25,7 @@ export default function Home() {
 
       <div className="mt-12 border-t border-hairline pt-8">
         <EngineeringBlog />
-        <EventsSection />
+        <CertificationsSection />
       </div>
 
       <div className="mt-2 border-t border-hairline pt-8">
