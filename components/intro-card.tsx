@@ -47,7 +47,7 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
           href={siteConfig.resumeUrl}
           target="_blank"
           rel="noreferrer"
-          className="wood-box wood-box-interactive mt-3 ml-[18px] inline-flex items-center gap-1.5 px-4 py-1.5 text-[11px] font-bold tracking-[0.08em] uppercase transition-transform active:translate-y-0.5"
+          className="wood-box wood-box-interactive mt-3 ml-[18px] inline-flex items-center gap-1 px-2.5 py-1 text-[9px] font-bold tracking-[0.06em] uppercase transition-transform active:translate-y-0.5 sm:gap-1.5 sm:px-4 sm:py-1.5 sm:text-[11px] sm:tracking-[0.08em]"
           style={{ background: "var(--doodle-sun)", color: "var(--block-dark)" }}
         >
           Download resume ↓
