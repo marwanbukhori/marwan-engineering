@@ -24,8 +24,8 @@ export default function AboutPage() {
         <PhotoCarousel />
 
         <div className="mt-8">
-          <div className="text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">Currently</div>
-          <p className="mt-0.5 max-w-[640px] font-[family-name:var(--font-title)] text-[16px] leading-relaxed text-foreground">
+          <div className="text-[11px] font-medium tracking-[0.06em] text-accent uppercase">Currently</div>
+          <p className="mt-0.5 font-[family-name:var(--font-title)] text-[16px] leading-relaxed text-foreground">
             {siteConfig.currentlyBlurb}
           </p>
         </div>

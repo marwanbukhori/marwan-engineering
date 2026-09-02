@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
 import type { AppEntry, AppStatus } from "@/lib/apps";
+import { tagColor } from "@/lib/tag-colors";
 import { useTilt3D } from "@/lib/use-tilt-3d";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
@@ -97,7 +98,8 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
         {app.tags.map((tag) => (
           <span
             key={tag}
-            className="border border-hairline bg-chip px-2 py-0.5 text-[11px] text-subtle transition-colors group-hover:bg-white/10 group-hover:text-white/60"
+            className="border bg-chip px-2 py-0.5 text-[11px] font-medium"
+            style={{ borderColor: tagColor(tag), color: tagColor(tag) }}
           >
             {tag}
           </span>

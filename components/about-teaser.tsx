@@ -10,7 +10,8 @@ export function AboutTeaser() {
         Background
       </h2>
       <PhotoCarousel />
-      <p className="mt-5 max-w-[640px] text-[14px] leading-relaxed text-muted">{siteConfig.currentlyBlurb}</p>
+      <div className="mt-5 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">Currently</div>
+      <p className="mt-0.5 text-[14px] leading-relaxed text-muted">{siteConfig.currentlyBlurb}</p>
 
       <div className="mt-6 border-t border-hairline pt-6">
         <TimelineList />

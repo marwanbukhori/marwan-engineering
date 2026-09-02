@@ -23,7 +23,9 @@ export function TimelineList() {
               className={`absolute top-1.5 left-0 h-[7px] w-[7px] rounded-full ${isLast ? "status-dot-active" : ""}`}
               style={{ background: isLast ? "var(--status-live)" : "var(--dim)" }}
             />
-            <div className="text-[13px] text-subtle">{item.period}</div>
+            <div className="text-[13px] font-semibold" style={{ color: "var(--doodle-sun)" }}>
+              {item.period}
+            </div>
             <div className="mt-0.5 flex items-center gap-2">
               <CompanyMark label={item.company} />
               <div className="text-[14px] font-medium text-foreground">{item.role}</div>

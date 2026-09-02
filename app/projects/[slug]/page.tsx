@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { apps, getApp, type AppStatus } from "@/lib/apps";
+import { tagColor } from "@/lib/tag-colors";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
   live: { bg: "var(--status-live)", text: "#ffffff" },
@@ -61,14 +62,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="mb-8 flex flex-wrap gap-2">
           {app.tags.map((tag) => (
-            <span key={tag} className="bg-chip px-2.5 py-1 text-[13px] text-subtle">
+            <span
+              key={tag}
+              className="border bg-chip px-2.5 py-1 text-[13px] font-medium"
+              style={{ borderColor: tagColor(tag), color: tagColor(tag) }}
+            >
               {tag}
             </span>
           ))}
         </div>
 
         <div className="mb-8 border-t border-hairline pt-6">
-          <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
+          <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">
             How it works
           </h2>
           <p className="max-w-[680px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
@@ -76,7 +81,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {app.techStack && app.techStack.length > 0 && (
           <div className="mb-8 border-t border-hairline pt-6">
-            <h2 className="mb-3 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
+            <h2 className="mb-3 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">
               Tech stack
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -94,7 +99,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {app.videoUrl && (
           <div className="mb-8 border-t border-hairline pt-6">
-            <h2 className="mb-3 text-[11px] font-medium tracking-[0.06em] text-subtle uppercase">
+            <h2 className="mb-3 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">
               Demo
             </h2>
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}

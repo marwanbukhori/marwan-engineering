@@ -19,7 +19,9 @@ export function EngineeringBlog() {
                 <div className="font-[family-name:var(--font-title)] text-[16px] font-semibold text-foreground group-hover:text-accent">
                   {post.title}
                 </div>
-                <div className="shrink-0 text-[13px] text-subtle">{post.date}</div>
+                <div className="shrink-0 text-[13px] font-semibold" style={{ color: "var(--doodle-sun)" }}>
+                  {post.date}
+                </div>
               </div>
               <p className="max-w-[640px] text-[14px] leading-relaxed text-muted">{post.excerpt}</p>
             </a>

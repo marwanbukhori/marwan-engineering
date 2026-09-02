@@ -5,11 +5,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { WeatherDoodle } from "@/components/weather-doodle";
-import { useTilt3D } from "@/lib/use-tilt-3d";
 import { siteConfig } from "@/lib/site-config";
 
 export function IntroCard({ name, tagline }: { name: string; tagline: string }) {
-  const tiltRef = useTilt3D<HTMLDivElement>(4);
   const cardRef = useRef<HTMLDivElement>(null);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -20,6 +18,7 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
       opacity: 0,
       duration: 0.7,
       ease: "back.out(1.6)",
+      clearProps: "transform",
     });
   }, []);
 
@@ -33,12 +32,9 @@ export function IntroCard({ name, tagline }: { name: string; tagline: string }) 
   }, []);
 
   return (
-    <div className="sticky top-4 z-20 mb-14 sm:mb-20">
+    <div className="sticky top-4 z-20 mb-8 sm:mb-10">
       <div
-        ref={(el) => {
-          cardRef.current = el;
-          tiltRef.current = el;
-        }}
+        ref={cardRef}
         className={`wood-box wood-grain relative overflow-hidden shadow-[0_12px_28px_-10px_rgba(0,0,0,0.4)] transition-[padding] duration-300 ${
           collapsed ? "px-4 py-2.5 sm:px-5" : "px-5 py-5 sm:px-6"
         }`}

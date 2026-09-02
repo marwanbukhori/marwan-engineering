@@ -18,7 +18,9 @@ export function CertificationsSection() {
                 />
                 <div className="mt-2.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                   <div className="text-[15px] font-semibold text-foreground">{cert.title}</div>
-                  <div className="shrink-0 text-[13px] text-subtle">{cert.date}</div>
+                  <div className="shrink-0 text-[13px] font-semibold" style={{ color: "var(--doodle-sun)" }}>
+                    {cert.date}
+                  </div>
                 </div>
                 <p className="mt-1 text-[13px] leading-relaxed text-muted">{cert.issuer}</p>
               </>
