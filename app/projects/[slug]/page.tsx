@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apps, getApp, type AppStatus } from "@/lib/apps";
+import { getProject, getProjects } from "@/lib/content";
+import { paragraphs, type AppStatus } from "@/lib/content-types";
 import { tagColor } from "@/lib/tag-colors";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
@@ -13,7 +14,7 @@ const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
 };
 
 export function generateStaticParams() {
-  return apps.map((app) => ({ slug: app.slug }));
+  return getProjects().map((app) => ({ slug: app.slug }));
 }
 
 export async function generateMetadata({
@@ -22,7 +23,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const app = getApp(slug);
+  const app = getProject(slug);
   if (!app) return {};
   return {
     title: `${app.name}: Marwan Bukhori`,
@@ -32,7 +33,7 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const app = getApp(slug);
+  const app = getProject(slug);
   if (!app) notFound();
 
   const statusStyle = STATUS_STYLE[app.status];
@@ -76,7 +77,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">
             How it works
           </h2>
-          <p className="max-w-[680px] text-[15px] leading-relaxed text-muted">{app.detail}</p>
+          <div className="flex max-w-[680px] flex-col gap-4">
+            {paragraphs(app.detail).map((paragraph) => (
+              <p key={paragraph} className="text-[15px] leading-relaxed text-muted">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
 
         {app.techStack && app.techStack.length > 0 && (

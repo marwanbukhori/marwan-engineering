@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
-import type { AppEntry, AppStatus } from "@/lib/apps";
+import type { AppEntry, AppStatus } from "@/lib/content-types";
 import { tagColor } from "@/lib/tag-colors";
 import { useTilt3D } from "@/lib/use-tilt-3d";
 

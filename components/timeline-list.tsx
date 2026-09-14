@@ -1,4 +1,4 @@
-import { timeline } from "@/lib/timeline";
+import { getCareer } from "@/lib/content";
 
 function CompanyMark({ label }: { label: string }) {
   return (
@@ -12,13 +12,15 @@ function CompanyMark({ label }: { label: string }) {
 }
 
 export function TimelineList() {
+  const timeline = getCareer();
+
   return (
     <div className="relative flex flex-col gap-6">
       <div className="absolute top-1.5 bottom-1 left-[3px] w-px bg-hairline" />
       {timeline.map((item, i) => {
         const isLast = i === timeline.length - 1;
         return (
-          <div key={item.period} className="relative pl-6">
+          <div key={item.slug} className="relative pl-6">
             <span
               className={`absolute top-1.5 left-0 h-[7px] w-[7px] rounded-full ${isLast ? "status-dot-active" : ""}`}
               style={{ background: isLast ? "var(--status-live)" : "var(--dim)" }}

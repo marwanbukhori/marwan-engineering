@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectsList } from "@/components/projects-list";
+import { getProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects: Marwan Bukhori",
@@ -19,7 +20,7 @@ export default function ProjectsPage() {
           Projects
         </h1>
 
-        <ProjectsList />
+        <ProjectsList projects={getProjects()} />
       </div>
     </main>
   );

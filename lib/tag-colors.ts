@@ -6,6 +6,9 @@ export const TAG_COLORS: Record<string, string> = {
   Agents: "#ff6bae",
   "Tool use": "#b18cff",
   Multimodal: "#5cd6c0",
+  "Distributed systems": "#e05c5c",
+  Kubernetes: "#3f9bb5",
+  "Load testing": "#a9744f",
 };
 
 export function tagColor(tag: string): string {

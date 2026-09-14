@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site-config";
+import { getProjects } from "@/lib/content";
 import { AboutTeaser } from "@/components/about-teaser";
 import { ProjectsTeaser } from "@/components/projects-teaser";
 import { WritingTeaser } from "@/components/writing-teaser";
@@ -20,7 +21,7 @@ export default function Home() {
         </h2>
       </div>
 
-      <ProjectsTeaser />
+      <ProjectsTeaser projects={getProjects()} />
 
       <div className="mt-12 border-t border-hairline pt-8">
         <WritingTeaser />

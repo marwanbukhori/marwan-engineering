@@ -1,23 +1,23 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { apps } from "@/lib/apps";
+import type { AppEntry } from "@/lib/content-types";
 import { ProjectFilterBar } from "@/components/project-filter-bar";
 import { ProjectRow } from "@/components/project-row";
 import { SeeMoreLink } from "@/components/see-more-link";
 
 const PREVIEW_COUNT = 3;
 
-export function ProjectsTeaser() {
+export function ProjectsTeaser({ projects }: { projects: AppEntry[] }) {
   const [filter, setFilter] = useState<string | null>(null);
 
   const tags = useMemo(() => {
     const set = new Set<string>();
-    apps.forEach((app) => app.tags.forEach((tag) => set.add(tag)));
+    projects.forEach((app) => app.tags.forEach((tag) => set.add(tag)));
     return Array.from(set).sort();
-  }, []);
+  }, [projects]);
 
-  const filtered = filter ? apps.filter((app) => app.tags.includes(filter)) : apps;
+  const filtered = filter ? projects.filter((app) => app.tags.includes(filter)) : projects;
   const preview = filtered.slice(0, PREVIEW_COUNT);
 
   return (
@@ -34,7 +34,7 @@ export function ProjectsTeaser() {
         </div>
       )}
 
-      <SeeMoreLink href="/projects" label={`See all ${apps.length} projects`} />
+      <SeeMoreLink href="/projects" label={`See all ${projects.length} projects`} />
     </div>
   );
 }
