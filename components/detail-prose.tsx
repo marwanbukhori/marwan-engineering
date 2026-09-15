@@ -19,8 +19,8 @@ export function BlockList({ items, className = "" }: { items: ContentBlock[]; cl
           <Heading key={i} level={block.level} text={block.text} />
         ) : block.type === "list" ? (
           <ul key={i} className="flex list-disc flex-col gap-1.5 pl-[1.1em] marker:text-dim">
-            {block.items.map((item) => (
-              <li key={item}>
+            {block.items.map((item, n) => (
+              <li key={n}>
                 <InlineText text={item} />
               </li>
             ))}

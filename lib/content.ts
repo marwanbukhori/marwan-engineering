@@ -3,12 +3,14 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type {
-  AppEntry,
-  AppStatus,
-  Certification,
-  TimelineItem,
-  WritingNote,
+import {
+  CATEGORIES,
+  type AppEntry,
+  type AppStatus,
+  type Category,
+  type Certification,
+  type TimelineEntry,
+  type WritingNote,
 } from "@/lib/content-types";
 
 /**
@@ -125,7 +127,8 @@ function strList(data: Frontmatter, key: string, file: string, required: boolean
   if (!Array.isArray(value) || value.some((item) => typeof item !== "string")) {
     fail(file, `field "${key}" must be a list of text values`);
   }
-  const list = (value as string[]).map((item) => item.trim()).filter(Boolean);
+  // Deduplicated: a repeated tag or image is a typo, and would collide as a React key.
+  const list = [...new Set((value as string[]).map((item) => item.trim()).filter(Boolean))];
   if (required && list.length === 0) fail(file, `field "${key}" must have at least one entry`);
   return list;
 }
@@ -142,15 +145,21 @@ export function getProjects(): AppEntry[] {
   const projects = readCollection("projects").map(({ slug, data, body: content }) => {
     const file = `content/projects/${slug}.md`;
     const status = str(data, "status", file);
+    const category = str(data, "category", file);
 
     if (!STATUSES.includes(status as AppStatus)) {
       fail(file, `status "${status}" is not valid (use one of: ${STATUSES.join(", ")})`);
+    }
+
+    if (!CATEGORIES.includes(category as Category)) {
+      fail(file, `category "${category}" is not valid (use one of: ${CATEGORIES.join(", ")})`);
     }
 
     return {
       slug,
       name: str(data, "name", file),
       status: status as AppStatus,
+      category: category as Category,
       order: num(data, "order", file),
       description: str(data, "description", file),
       tags: strList(data, "tags", file, true),
@@ -158,6 +167,7 @@ export function getProjects(): AppEntry[] {
       liveUrl: optionalStr(data, "liveUrl", file),
       repoUrl: optionalStr(data, "repoUrl", file),
       videoUrl: optionalStr(data, "videoUrl", file),
+      images: strList(data, "images", file, false),
       detail: body(content, file),
       techStack: strList(data, "techStack", file, false),
     } satisfies AppEntry;
@@ -166,6 +176,7 @@ export function getProjects(): AppEntry[] {
   return sort(projects).map((project) => ({
     ...project,
     techStack: project.techStack?.length ? project.techStack : undefined,
+    images: project.images?.length ? project.images : undefined,
   }));
 }
 
@@ -174,23 +185,42 @@ export function getProject(slug: string): AppEntry | undefined {
   return getProjects().find((project) => project.slug === slug);
 }
 
-/** Every career entry, ordered by the `order` field, ascending (oldest first). */
-export function getCareer(): TimelineItem[] {
+/** Every career entry, ordered by the `order` field, ascending (newest first). */
+export function getCareer(): TimelineEntry[] {
   const roles = readCollection("career").map(({ slug, data, body: content }) => {
     const file = `content/career/${slug}.md`;
 
     return {
       slug,
       period: str(data, "period", file),
-      company: str(data, "company", file),
+      name: str(data, "company", file),
       role: str(data, "role", file),
       order: num(data, "order", file),
       detail: body(content, file),
       logo: optionalStr(data, "logo", file),
-    } satisfies TimelineItem;
+    } satisfies TimelineEntry;
   });
 
   return sort(roles);
+}
+
+/** Every education entry, ordered by the `order` field, ascending (newest first). */
+export function getEducation(): TimelineEntry[] {
+  const study = readCollection("education").map(({ slug, data, body: content }) => {
+    const file = `content/education/${slug}.md`;
+
+    return {
+      slug,
+      period: str(data, "period", file),
+      name: str(data, "institution", file),
+      role: str(data, "qualification", file),
+      order: num(data, "order", file),
+      detail: body(content, file),
+      logo: optionalStr(data, "logo", file),
+    } satisfies TimelineEntry;
+  });
+
+  return sort(study);
 }
 
 /** Every writing note, ordered by the `order` field, ascending. */

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { AppEntry } from "@/lib/content-types";
+import { CATEGORIES, type AppEntry } from "@/lib/content-types";
 import { ProjectFilterBar } from "@/components/project-filter-bar";
 import { ProjectRow } from "@/components/project-row";
 import { SeeMoreLink } from "@/components/see-more-link";
@@ -11,21 +11,22 @@ const PREVIEW_COUNT = 3;
 export function ProjectsTeaser({ projects }: { projects: AppEntry[] }) {
   const [filter, setFilter] = useState<string | null>(null);
 
-  const tags = useMemo(() => {
+  // Only offer categories that actually have projects in them.
+  const categories = useMemo(() => {
     const set = new Set<string>();
-    projects.forEach((app) => app.tags.forEach((tag) => set.add(tag)));
-    return Array.from(set).sort();
+    projects.forEach((app) => set.add(app.category));
+    return CATEGORIES.filter((category) => set.has(category));
   }, [projects]);
 
-  const filtered = filter ? projects.filter((app) => app.tags.includes(filter)) : projects;
+  const filtered = filter ? projects.filter((app) => app.category === filter) : projects;
   const preview = filtered.slice(0, PREVIEW_COUNT);
 
   return (
     <div>
-      <ProjectFilterBar tags={tags} active={filter} onSelect={setFilter} />
+      <ProjectFilterBar categories={categories} active={filter} onSelect={setFilter} />
 
       {preview.length === 0 ? (
-        <p className="text-[14px] text-dim">No projects with this tag yet.</p>
+        <p className="text-[14px] text-dim">No projects in this category yet.</p>
       ) : (
         <div className="flex flex-col">
           {preview.map((app, index) => (

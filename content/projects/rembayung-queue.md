@@ -1,14 +1,17 @@
 ---
 name: Rembayung Booking Queue
 status: live
-order: 1
+category: Backend & Infra
+order: 10
 description: >-
-  A restaurant booking system built to survive its own busiest second: it meters
-  the crowd before the database sees it, and a database constraint makes selling
-  the same table twice impossible.
+  A demonstration system built to exercise a full OpenShift, Spring Boot and Angular
+  stack under real load, modelled on a restaurant booking night that collapsed and
+  sold the same tables twice.
 tags:
   - Distributed systems
   - Kubernetes
+  - Observability
+  - CI/CD
   - Load testing
 liveUrl: https://console-marwanbukhori-dev.apps.rm3.7wse.p1.openshiftapps.com
 repoUrl: https://github.com/marwanbukhori/rembayung-queue
@@ -24,7 +27,26 @@ techStack:
   - k6
   - Splunk
   - Dynatrace
+images:
+  - /projects/rembayung-console.png
+  - /projects/rembayung-design.png
+  - /projects/rembayung-simulation.png
+  - /projects/rembayung-cluster.png
+  - /projects/rembayung-live-cluster.png
+  - /projects/rembayung-splunk-log.png
+  - /projects/rembayung-topology.png
 ---
+
+## Why it exists
+
+This is a demonstration piece, built to show a DevOps and platform stack working end
+to end rather than to run a restaurant. OpenShift and Kubernetes, Spring Boot on the
+services, Angular on the console, Splunk for logs and Dynatrace for traces were all
+chosen deliberately, because a demo is only worth anything if the problem underneath
+it is real enough to break. So the system models a genuine failure and every claim it
+makes is measured against a deployed cluster.
+
+## The problem
 
 It models a real failure. A Malaysian restaurant opened reservations at 21:00 each
 night; the platform fell over at roughly three thousand attempts, and scalpers took
@@ -32,13 +54,21 @@ seats that had already been sold. Two failures, not one: the site went down, and
 sold the same table twice. This rebuilds that moment as something you can run,
 watch, and check.
 
-Two services split the problem. queue-gate issues a ticket per arrival and admits
-them at a fixed rate, so the crowd is metered before it reaches the database, and
-admission is a pure function of elapsed time, so no queue state has to be stored or
-coordinated. booking-service then takes a pessimistic row lock per slot, which makes
-bookings for one slot strictly serial and therefore slow on purpose, about one per
-second. Correctness is what is being optimised for, and the queue in front is what
-makes that acceptable.
+## How it runs
+
+It deploys to a constrained OpenShift cluster: `restricted-v2` SCC only, a namespaced
+quota, and horizontal autoscalers. Ansible renders and applies the manifests, waits
+for the rollout, smoke-tests the public route and rolls back on its own if any of that
+fails. CI and CD are separate, so a rollback needs no rebuild, and the deploy identity
+is a ServiceAccount with no `delete` verb and no access to secrets, pods or RBAC.
+
+Every pod ships structured events to Splunk over HEC, which answers what happened, and
+an application-only Dynatrace OneAgent supplies traces, which answer where the time
+went. Load comes from k6 running in-cluster as a Kubernetes Job, so the load generator
+is subject to the same quota as everything it is testing. The Angular console reads
+the drop, the pods, the quota and the autoscalers live, and can start a run itself.
+
+## What the numbers say
 
 The oversell guard is a CHECK constraint in Oracle rather than application logic, so
 no bug in the service can get past it. Filling one slot to its exact boundary under
@@ -48,9 +78,3 @@ exactly 250, never 249 or 251. Under 200 concurrent customers against a
 intentional 503, zero errors, and the oversold counter still reading zero. 203 tests
 run against a real Oracle database in Testcontainers, not an in-memory substitute.
 
-Two things there were genuinely surprising. Readiness probes that included the
-database emptied the Service during overload, because the correct response to a busy
-database is a 503, not disappearing. And the deploy pipeline wrote only the container
-image for 81 commits, so every other field in a manifest reached the cluster only
-when a human remembered, which means a committed, CI-green, deployed change could do
-nothing at all.

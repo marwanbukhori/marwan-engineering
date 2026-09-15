@@ -1,6 +1,7 @@
 import { PhotoCarousel } from "@/components/photo-carousel";
 import { SeeMoreLink } from "@/components/see-more-link";
 import { TimelineList } from "@/components/timeline-list";
+import { getCareer, getEducation } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
 export function AboutTeaser() {
@@ -14,7 +15,11 @@ export function AboutTeaser() {
       <p className="mt-0.5 text-[14px] leading-relaxed text-muted">{siteConfig.currentlyBlurb}</p>
 
       <div className="mt-6 border-t border-hairline pt-6">
-        <TimelineList />
+        <TimelineList title="Career" entries={getCareer()} />
+      </div>
+
+      <div className="mt-6 border-t border-hairline pt-6">
+        <TimelineList title="Education" entries={getEducation()} />
       </div>
 
       <SeeMoreLink href="/about" />

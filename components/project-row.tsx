@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
 import type { AppEntry, AppStatus } from "@/lib/content-types";
 import { tagColor } from "@/lib/tag-colors";
+import { GithubButton } from "@/components/github-button";
 import { useTilt3D } from "@/lib/use-tilt-3d";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
@@ -77,16 +78,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
             Live
           </Link>
         ) : app.repoUrl ? (
-          <Link
-            href={app.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-1 text-sm font-medium text-subtle transition-colors group-hover:text-white"
-          >
-            View on GitHub
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          <GithubButton href={app.repoUrl} onClick={(e) => e.stopPropagation()} />
         ) : (
           <span className="text-sm text-dim transition-colors group-hover:text-white/40">
             Not live yet
@@ -98,7 +90,7 @@ export function ProjectRow({ app, index = 0 }: { app: AppEntry; index?: number }
         {app.tags.map((tag) => (
           <span
             key={tag}
-            className="border bg-chip px-2 py-0.5 text-[11px] font-medium"
+            className="pixel-ui border bg-chip px-2 py-0.5 text-[11px] font-medium"
             style={{ borderColor: tagColor(tag), color: tagColor(tag) }}
           >
             {tag}

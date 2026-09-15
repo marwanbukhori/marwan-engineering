@@ -33,7 +33,7 @@ export default async function NotePage({ params }: { params: Promise<{ slug: str
   return (
     <main className="min-h-screen text-foreground">
       <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:max-w-[860px]">
-        <Link href="/writing" className="mb-8 inline-block text-sm text-subtle hover:text-accent">
+        <Link href="/writing" className="mb-8 block w-fit text-sm text-subtle hover:text-accent">
           ← Writing
         </Link>
 
@@ -47,7 +47,7 @@ export default async function NotePage({ params }: { params: Promise<{ slug: str
 
         <DetailProse
           detail={note.body}
-          className="max-w-[680px] gap-4 text-[15px] leading-relaxed text-muted"
+          className="max-w-[680px] gap-4 text-[13.5px] leading-relaxed text-muted sm:text-[15px]"
         />
       </div>
     </main>

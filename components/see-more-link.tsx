@@ -4,7 +4,7 @@ export function SeeMoreLink({ href, label = "See more" }: { href: string; label?
   return (
     <Link
       href={href}
-      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover"
+      className="pixel-ui mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover"
     >
       {label}
       <span aria-hidden>→</span>

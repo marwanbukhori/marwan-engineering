@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PhotoCarousel } from "@/components/photo-carousel";
 import { TimelineList } from "@/components/timeline-list";
+import { getCareer, getEducation } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen text-foreground">
       <div className="mx-auto max-w-[720px] px-5 py-12 sm:px-8 sm:py-16 lg:max-w-[860px]">
-        <Link href="/" className="mb-8 inline-block text-sm text-subtle hover:text-accent">
+        <Link href="/" className="mb-8 block w-fit text-sm text-subtle hover:text-accent">
           ← Home
         </Link>
 
@@ -31,7 +32,11 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-8 border-t border-hairline pt-6">
-          <TimelineList />
+          <TimelineList title="Career" entries={getCareer()} />
+        </div>
+
+        <div className="mt-8 border-t border-hairline pt-6">
+          <TimelineList title="Education" entries={getEducation()} />
         </div>
       </div>
     </main>

@@ -10,12 +10,22 @@
 
 export type AppStatus = "live" | "done" | "in progress" | "planned" | "idea";
 
+/**
+ * The project filter bar is built from these, so the list stays short however many
+ * projects there are. Adding a category here is all it takes to offer a new filter.
+ */
+export const CATEGORIES = ["AI", "Backend & Infra", "Frontend", "Tools"] as const;
+
+export type Category = (typeof CATEGORIES)[number];
+
 export type AppEntry = {
   /** Comes from the markdown filename, e.g. content/projects/chefbot.md -> "chefbot". */
   slug: string;
   name: string;
   status: AppStatus;
-  /** Sort position on the projects page, ascending. */
+  /** Which filter button this project sits under. */
+  category: Category;
+  /** Sort position on the projects page, ascending. Number in tens to leave gaps. */
   order: number;
   description: string;
   tags: string[];
@@ -27,23 +37,32 @@ export type AppEntry = {
   repoUrl?: string;
   /** If set, a self-hosted demo video (path under /public) shown on the project page. */
   videoUrl?: string;
+  /** Screenshots under /public, shown on the project page. */
+  images?: string[];
   /** The markdown body of the file. Paragraphs are separated by "\n\n". */
   detail: string;
   /** Real technologies used, shown only on the project detail page (not used for filtering). */
   techStack?: string[];
 };
 
-export type TimelineItem = {
+/**
+ * One row in a timeline. Career and education keep their own field names in their
+ * markdown (company/role, institution/qualification); each loader maps them onto
+ * these two so a single component renders both.
+ */
+export type TimelineEntry = {
   /** Comes from the markdown filename, e.g. content/career/silentmode.md -> "silentmode". */
   slug: string;
   period: string;
-  company: string;
+  /** Company or institution. */
+  name: string;
+  /** Job title or qualification. */
   role: string;
-  /** Sort position in the timeline, ascending (oldest role first). */
+  /** Sort position in the timeline, ascending (newest first). */
   order: number;
   /** The markdown body of the file. */
   detail: string;
-  /** Optional path to a real, provided company logo in /public, e.g. "/logos/verus-virtus.png". */
+  /** Optional logo in /public, e.g. "/logos/verus-virtus.png". */
   logo?: string;
 };
 

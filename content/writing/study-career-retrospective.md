@@ -3,47 +3,116 @@ title: Study & Career Journey Retrospective
 date: Aug 2026 @ home-office
 order: 1
 excerpt: >-
-  Usually in interview, often I got asked to tell story of my career...
+  In interviews I usually get asked to tell the story of my career. This is that
+  story, written down properly.
 ---
 
-## Study Years - Sep 2019 - Nov 2023
+## Study Years : Sep 2019 - Nov 2023
 
-Its all started in UKM... where we was introduced to Java. During UKM years 2019 - 2023, the future
-seems so bright and a lot of exciting futures waiting. From developing Java desktop app using Eclipse, 
-building Android application with Android Studio, web programming with PHP vanilla, HTML CSS MySQL to data engineering where we did ETL using Google Collabs and lastly doing FYP with Flutter. Skipping 
-mentioning math subjects as i hate it all (yes i am talking to you Math Discrete). Joined a Flutter bootcamp
-under kelasprogramming.com and proceed with my FYP on flutter. From there, opportunity with TeratoTech uphold..
+It all started in UKM, where we were introduced to Java. During those years the
+future seemed bright, with a lot of exciting things waiting. The coursework moved
+through most of the stack:
 
+- Java desktop apps in Eclipse
+- Android applications with Android Studio
+- Web programming with vanilla PHP, HTML, CSS and MySQL
+- Data engineering, doing ETL in Google Colab
+- A final year project in Flutter
+
+Skipping the math subjects, as I hated all of them (yes, I am talking to you,
+Discrete Math). I joined a Flutter bootcamp under kelasprogramming.com and carried
+that into my FYP. From there, the opportunity with Terato Tech came up.
 
 ## Internship (Terato Tech) : Sep 2022 - Jan 2023
 
-Internship experience started well as my FYP project called e-masjid - a masjid personalised management and
-community app where user can interact with masjid features on their hand such as e-sedaqah, ask islamic question, nikah appointment and more! (read more: https://github.com/marwanbukhori/e_masjid). Why easily got into Teratotech? because they have the same internal project, developing Betaqwa!, also a masjid focused webapp and mobile app focused on local community masjid. Most of my internship focused on shipping features on the webapp, developing MVP React Native app from scratch and more.
+The internship started well, because of my FYP: e-masjid, a personalised masjid
+management and community app where users get masjid features in their hand —
+e-sedaqah, asking Islamic questions, nikah appointments and more
+(https://github.com/marwanbukhori/e_masjid).
+
+Why was it easy to get into Terato Tech? Because they had the same kind of internal
+project: Betaqwa, also a masjid-focused web and mobile app for local communities. So
+the work was familiar from day one:
+
+- Shipping features on the Betaqwa webapp
+- Building the React Native mobile MVP from scratch
+- A frontend landing page for KitaJaga, including the SemakHarga campaign
 
 ## Junior Year (Terato Tech) : Jan 2023 - Aug 2024
 
-Got absorbed into TeratoTech as full time. My first task? Outsourced to sister company called Silentmode where i work on their product called RONPOS, a fuel-retail POS solution. Mostly do fullstack development, shipping features such as planogram features, ESL (electronic shelf label) feature & design, reportings such as sales movement report, fuel totalizer report and more - mostly using Laravel Vuejs and AWS Cloud.
+Got absorbed into Terato Tech full time. My first task? Outsourced to a sister
+company called Silentmode, working on their product RONPOS, a fuel-retail POS
+solution. Mostly full-stack work in Laravel, Vue.js and AWS:
+
+- Planogram features
+- ESL (electronic shelf label) feature and design
+- Reporting: sales movement, fuel totalizer, and more
 
 ## First Transfer (Silentmode) : Aug 2024 - Feb 2026
 
-As I was involved in Silentmode's internal product and established within the team there, I was buyout and continue to work Silentmode officially. Having known most of colleagues, I started in dedicated team called Site Business Operation which is the major subgroup across entire company, stil doing the web dashboard thingy.
-After around 2 months, the company need to assemble a team to deliver E-Invoice solution mandate by the Government for our product, RONPOS. My name was part of the team which we'll develivering E-Invoice microservice as part of our ecosystem, which built on Vuejs on frontend and NestjS on backend and backed by Serverless architecture on AWS. A team of almost 10 people delivering features for Petronas Shell BHP. After delivering, the team disbanded yet I was mandated as the Maintainer and developer shipping addition features as per client's need.
+Having been involved in Silentmode's internal product and established within the
+team, I was bought out and continued at Silentmode officially. I started in a
+dedicated team called Site Business Operation, the major subgroup across the entire
+company, still doing the web dashboard thingy.
 
-Interestingly, the company restructrured and I was in BHP team client. As having background in Cloud, i continue as E-Invoice developer and the CloudBOS (web dashboard thingy earlier), but we have problem where we don't have a HUB developer (the backend for our POS system). In the first BHP team meeting, I volunteer to be the HUB developer as it also uses Nestjs - the same as in E-Invoice microservice.
+After around two months, the company needed to assemble a team to deliver the
+E-Invoice solution mandated by the Government for RONPOS. I was part of it:
 
-I continue to ship features and involved in Hub and E-Invoice system. Features for hub involve Mesra Card Loyalty Integration for BHP, Subsidy RON95 Integration for all clients, bug fixes, deployment standby and support and more!
+- An E-Invoice microservice in our ecosystem, Vue.js frontend, NestJS backend,
+  serverless architecture on AWS
+- A team of almost 10 people, delivering for Petronas, Shell and BHP
+- After delivery the team disbanded, and I stayed on as maintainer and developer,
+  shipping additional features as clients needed them
+
+Then the company restructured and I landed in the BHP client team. With my cloud
+background I continued as the E-Invoice developer and on CloudBOS (the web dashboard
+thingy from earlier) — but we had no HUB developer, the backend for our POS system.
+In the first BHP team meeting I volunteered to take it, since it also uses NestJS,
+the same as the E-Invoice microservice. From there:
+
+- Mesra Card loyalty integration for BHP
+- RON95 subsidy integration for all clients
+- Bug fixes, deployment standby and support
 
 ## Second transfer (Geomotion): Feb 2026 - Apr 2026
 
-Why the transfer? because i got married to my colleague and fellow software engineer and with department policy and everything.. so yeah. It was quite a short stint as I was one of newest member out of 3 members in the team. I was responsible for handling Devops, Securiy and Audit Policy - handling CICD pipeline for all microservices, introducing scanning tools, fixing security issues in  HTTP headers, introducing rate limiters and more, all according to the Audit Documents. I didn't stay long as the job and the company does not align with my overall career journey. Also, for personal reason as I have a Japan trip planned for 2 weeks.
+Why the transfer? Because I got married to my colleague, a fellow software engineer,
+and with department policy and everything... so yeah. It was quite a short stint, and
+I was one of the newest of only three members in the team. I handled DevOps, security
+and audit policy, all according to the audit documents:
+
+- CI/CD pipelines for all microservices
+- Introducing scanning tools
+- Fixing security issues in HTTP headers
+- Introducing rate limiters
+
+I didn't stay long, as the job and the company did not align with my overall career
+journey. Also for a personal reason: I had a two-week Japan trip planned.
 
 ## Third transfer (Verus Virtus): May 2026 - Aug 2026
 
-After reaching back from Japan, I got an offer from Verus Virtus. I was their first Software Engineer hired and we worked in a very fast pace startup environment wearing multiple hats. I shipped the offical website (verusvirtus.com), developed internal accounting software using open source solution called BigCapital, and delivered my first AI project called Network Configurator using FastAPI, Nextjs and LLMs using ClaudeAPI. I also involved in NDA-projects shipping features each days, handling client-facing and testing on meetings, requirements. 
+After getting back from Japan I got an offer from Verus Virtus. I was their first
+software engineer hired, in a very fast-paced startup where everyone wore multiple
+hats:
 
-It was a really good experience, nice colleagues but its not really for me as having to work on night and weekends and having full ownership on a project end to end, from requirements, design, developemnt, QA, deployments, client-facing etc. 
+- Shipped the official website, verusvirtus.com
+- Built internal accounting software on the open-source BigCapital
+- Delivered my first AI project, a Network Configurator using FastAPI, Next.js and
+  LLMs through the Claude API
+- NDA projects, shipping features daily, plus client-facing meetings, requirements
+  and testing
+
+It was a really good experience with nice colleagues, but it wasn't really for me:
+working nights and weekends, with full ownership of a project end to end —
+requirements, design, development, QA, deployment, client-facing, all of it.
 
 ## Summarize
 
-I love building things. From Laravel Vuejs to Nestjs to Python with Django & FastAPI, AWS Cloud, a bit of Devops and AI engineering, i tasted all of these flavours throughout my career. I still keep in touch and hold good bridges with my ex-company, yet to move forward to find my desired workplace where I can totally focused on my deliverables, technically and improving my part of soft skills, improving so much as in-depth and becoming Subject Matter Expert and till then horizontally expanding my knowledge to other domain, be it Cybersecurity, Platform, AI/ ML and others.
+I love building things. Laravel and Vue.js, NestJS, Python with Django and FastAPI,
+AWS Cloud, a bit of DevOps and AI engineering — I've tasted all of these flavours
+across my career. I still keep in touch and hold good bridges with my ex-companies.
 
+What I'm looking for next is a workplace where I can focus completely on my
+deliverables, improve technically and on the soft skills side, go deep enough to
+become a subject matter expert, and from there expand horizontally into other
+domains, whether that's cybersecurity, platform, AI/ML or something else.

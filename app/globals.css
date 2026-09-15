@@ -39,9 +39,15 @@
   --color-chip: var(--chip);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --font-sans: var(--font-pixel), monospace;
+  /*
+   * Body prose uses a normal monospace: Press Start 2P is ~16.7px per glyph, which
+   * gave only 20 characters per line on a phone. Headings, labels, chips and buttons
+   * keep the pixel font, where short strings make it read as character, not noise.
+   */
+  --font-sans: var(--font-body), ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-display: var(--font-pixel), monospace;
   --font-title: var(--font-pixel), monospace;
+  --font-pixel-ui: var(--font-pixel), monospace;
 }
 
 .page-bg-image {
@@ -61,6 +67,12 @@
 }
 
 body {
+  /*
+   * Miracode is a hairline, vector-y pixel face: over the photographic background it
+   * reads too light. A sub-pixel stroke thickens the stems without faking bold, which
+   * smears pixel letterforms. Reset on the Press Start 2P chrome, already heavy.
+   */
+  -webkit-text-stroke: 0.35px currentColor;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -316,4 +328,18 @@ button:active {
   pointer-events: none;
   border-right: 3px solid rgba(0, 0, 0, 0.3);
   border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Short UI strings keep the pixel font; see the note on --font-sans above. */
+.pixel-ui {
+  font-family: var(--font-pixel-ui);
+}
+
+/* Press Start 2P needs no thickening; keep it crisp. */
+.pixel-ui,
+h1,
+h2,
+h3,
+.wood-box-title {
+  -webkit-text-stroke: 0;
 }

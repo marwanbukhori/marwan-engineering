@@ -9,6 +9,7 @@ content/
   career/           one file per job          -> the timeline on /about and the home page
   certifications/   one file per credential   -> /certifications and the home page
   writing/          one file per note         -> /writing and the home page
+  education/        one file per qualification -> the Education timeline
 ```
 
 Each file has two parts: a **frontmatter** block between `---` lines for the short
@@ -30,7 +31,8 @@ separated by hyphens.
 ---
 name: Rembayung Booking Queue
 status: live
-order: 1
+category: Backend & Infra
+order: 10
 description: >-
   A restaurant booking system built to survive its own busiest second: it meters
   the crowd before the database sees it.
@@ -57,6 +59,7 @@ normally down here — nothing needs escaping.
 |---|---|---|
 | `name` | yes | Display title. |
 | `status` | yes | One of `live`, `done`, `in progress`, `planned`, `idea`. Controls the colored badge. |
+| `category` | yes | One of `AI`, `Backend & Infra`, `Frontend`, `Tools`. This is what the filter buttons are — see [Categories and tags](#categories-and-tags). |
 | `order` | yes | Position in the list, lowest first. See [Ordering](#ordering). |
 | `description` | yes | One or two sentences, shown on the cards in the list. |
 | `tags` | yes | At least one. Drives the filter bar — see [Tags](#tags). |
@@ -65,10 +68,46 @@ normally down here — nothing needs escaping.
 | `liveUrl` | no | Link to a live, externally-hosted deployment. |
 | `demoPath` | no | Path to an in-site demo page, e.g. `/demos/resume-chat`. |
 | `videoUrl` | no | A demo video under `public/`, e.g. `/videos/chef-bot-demo.mp4`. |
-| body | yes | The detail prose. See [Paragraphs and bullet points](#paragraphs-and-bullet-points). |
+| `images` | no | Screenshots under `public/`, shown as a grid on the project page. |
+| body | yes | The detail prose, written with `## ` headings. See [Writing a project body](#writing-a-project-body). |
 
 Leave optional fields out entirely rather than setting them empty — an empty value
 is treated as a mistake and will stop the build.
+
+### Writing a project body
+
+The body is free-form, so give it sections with `## ` headings rather than one long
+blob. `content/projects/rembayung-queue.md` is the worked example:
+
+```markdown
+## The problem
+What was broken, and why it mattered.
+
+## How it works
+The mechanism. The part an engineer reading this actually wants.
+
+## What the numbers say
+Measurements, if you have them.
+
+## What surprised me
+What you got wrong and what you learned.
+```
+
+Nothing enforces these names — use whatever fits the project. A short project can
+stay a single paragraph with no headings at all.
+
+### Screenshots
+
+Drop the files in `public/` and list them:
+
+```yaml
+images:
+  - /projects/rembayung-console.png
+  - /projects/rembayung-load.png
+```
+
+They render as a framed two-column grid above the demo video. Leave the field out and
+no Screenshots section appears.
 
 ## Add a job
 
@@ -97,6 +136,35 @@ commands.
 | `order` | yes | Position in the timeline, **newest role first**. `order: 1` is your current job and gets the green dot. |
 | `logo` | no | A company logo under `public/logos/`, e.g. `/logos/verus-virtus.png`. Replaces the letter square. See [Company logos](#company-logos). |
 | body | yes | What you did. Prose or bullets — see [Paragraphs and bullet points](#paragraphs-and-bullet-points). |
+
+## Add a qualification
+
+Create `content/education/<slug>.md`. It works exactly like a career entry, with two
+differently-named fields, and appears under the Education timeline on the home page
+and `/about`.
+
+```markdown
+---
+institution: Universiti Kebangsaan Malaysia (UKM)
+qualification: Bachelor of Software Engineering
+period: Sep 2019 – Nov 2023
+order: 1
+---
+
+- What you studied, or what you did there.
+- Bullets collapse behind "See more" exactly as career entries do.
+```
+
+| Field | Required | What it is |
+|---|---|---|
+| `institution` | yes | School or university. Its first letter becomes the square marker unless you give a `logo`. |
+| `qualification` | yes | The degree or certificate, shown in the accent color. |
+| `period` | yes | Free text, e.g. `Sep 2019 – Nov 2023`. |
+| `order` | yes | Position, newest first, same as career. |
+| `logo` | no | An institution logo under `public/logos/`. |
+| body | yes | What you did. Prose or bullets. |
+
+Delete every file in the folder and the Education section disappears entirely.
 
 ## Add a certification
 
@@ -224,19 +292,32 @@ its closing paren as text rather than swallowing it into the link.
 `order` sorts the list ascending — `1` appears first. The numbers only have to be in
 the right sequence relative to each other; gaps are fine.
 
-To put a new project at the top, give it `order: 1` and bump the others down by one.
-If two entries share a number they fall back to alphabetical order, so it won't
-break, it just won't be the order you wanted.
+Number projects in tens — 10, 20, 30 — so a new one can slot in at 25 without
+renumbering anything else. If two entries share a number they fall back to
+alphabetical order, so it won't break, it just won't be the order you wanted.
 
 Career entries work the same way: `order: 1` sits at the top and is rendered as the
 current role, with the green pulsing dot. When you start a new job, give it `order: 1`
 and push the others down by one.
 
-## Tags
+## Categories and tags
 
-Tags are shared across projects and drive the filter buttons on the home page and
-`/projects`. Reusing an existing tag is better than inventing a near-duplicate —
-`Agents` and `AI agents` would show up as two separate filters.
+These do different jobs and it is worth keeping them straight.
+
+**`category` is the filter.** One per project, from a fixed list: `AI`,
+`Backend & Infra`, `Frontend`, `Tools`. The filter bar is built from the categories that
+actually have projects, so it stays four buttons whether you have five projects or
+fifty. An unrecognised category stops the build. To add a new one, add it to
+`CATEGORIES` in `lib/content-types.ts` and give it a color in `lib/tag-colors.ts`.
+
+**Tags describe.** They show on cards and project pages and are not filterable, so
+you can be as specific as you like — `Embeddings`, `Load testing`, `Multimodal` —
+without growing the filter bar. That freedom is the whole point of splitting them.
+
+### Tag colors
+
+Reusing an existing tag is still better than inventing a near-duplicate, so the cards
+stay readable.
 
 Current tags: `RAG`, `LangGraph`, `MCP`, `Embeddings`, `Agents`, `Tool use`,
 `Multimodal`, `Distributed systems`, `Kubernetes`, `Load testing`.
