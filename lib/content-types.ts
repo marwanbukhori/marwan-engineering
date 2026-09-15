@@ -47,7 +47,81 @@ export type TimelineItem = {
   logo?: string;
 };
 
-/** Splits a detail body into paragraphs for rendering one <p> per paragraph. */
-export function paragraphs(detail: string): string[] {
-  return detail.split("\n\n").filter(Boolean);
+export type WritingNote = {
+  /** Comes from the markdown filename, e.g. content/writing/foo.md -> "foo". */
+  slug: string;
+  title: string;
+  /** Free text, e.g. "Sep 2026". */
+  date: string;
+  /** Sort position, ascending. Newest note first. */
+  order: number;
+  /** One or two sentences, shown in the list and the home teaser. */
+  excerpt: string;
+  /** If set, the entry links out here instead of to a page on this site. */
+  url?: string;
+  /** The note itself. Empty when the entry only links out. */
+  body: string;
+};
+
+export type Certification = {
+  /** Comes from the markdown filename, e.g. content/certifications/aws-saa.md -> "aws-saa". */
+  slug: string;
+  title: string;
+  issuer: string;
+  /** Free text, e.g. "2025" or "Mar 2025". */
+  date: string;
+  /** Sort position, ascending. */
+  order: number;
+  /** Optional badge image under public/, e.g. "/certifications/aws-saa.png". */
+  image?: string;
+  /** Optional link to the credential. */
+  url?: string;
+};
+
+export type ContentBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string; level: 2 | 3 }
+  | { type: "list"; items: string[] };
+
+const BULLET = /^[-*]\s+/;
+const HEADING = /^(#{2,3})\s+(.+)$/;
+
+/**
+ * Splits a detail body into renderable blocks.
+ *
+ * Blocks are separated by a blank line. A line starting with "## " (or "### ")
+ * is a heading. A block whose first line starts with "- " (or "* ") becomes a
+ * bullet list, and every following line starting the same way is another item;
+ * any other line continues the item above it. Anything else is a paragraph.
+ * Either way, hard-wrapped lines are joined back with spaces, so prose can be
+ * wrapped freely in the editor.
+ */
+export function blocks(detail: string): ContentBlock[] {
+  return detail
+    .split("\n\n")
+    .filter(Boolean)
+    .map((block) => {
+      const lines = block.split("\n");
+
+      const heading = HEADING.exec(lines[0]);
+      if (heading) {
+        return {
+          type: "heading",
+          level: heading[1].length === 2 ? 2 : 3,
+          text: [heading[2], ...lines.slice(1)].join(" ").trim(),
+        } satisfies ContentBlock;
+      }
+
+      if (!BULLET.test(lines[0])) {
+        return { type: "paragraph", text: lines.join(" ").trim() } satisfies ContentBlock;
+      }
+
+      const items: string[] = [];
+      for (const line of lines) {
+        if (BULLET.test(line)) items.push(line.replace(BULLET, "").trim());
+        else if (items.length > 0) items[items.length - 1] += ` ${line.trim()}`;
+      }
+
+      return { type: "list", items: items.filter(Boolean) } satisfies ContentBlock;
+    });
 }

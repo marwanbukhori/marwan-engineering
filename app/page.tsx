@@ -4,7 +4,6 @@ import { AboutTeaser } from "@/components/about-teaser";
 import { ProjectsTeaser } from "@/components/projects-teaser";
 import { WritingTeaser } from "@/components/writing-teaser";
 import { CertificationsTeaser } from "@/components/certifications-teaser";
-import { FaqTeaser } from "@/components/faq-teaser";
 import { Footer } from "@/components/footer";
 import { IntroCard } from "@/components/intro-card";
 
@@ -24,13 +23,14 @@ export default function Home() {
       <ProjectsTeaser projects={getProjects()} />
 
       <div className="mt-12 border-t border-hairline pt-8">
-        <WritingTeaser />
         <CertificationsTeaser />
+        <WritingTeaser />
       </div>
 
-      <div className="mt-2 border-t border-hairline pt-8">
+      {/* FAQ section hidden for now. Restore by uncommenting; /faq still works. */}
+      {/* <div className="mt-2 border-t border-hairline pt-8">
         <FaqTeaser />
-      </div>
+      </div> */}
 
       <div className="animate-fade-in-up mt-12" style={{ animationDelay: "480ms" }}>
         <Footer />

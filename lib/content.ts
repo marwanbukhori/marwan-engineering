@@ -3,7 +3,13 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type { AppEntry, AppStatus, TimelineItem } from "@/lib/content-types";
+import type {
+  AppEntry,
+  AppStatus,
+  Certification,
+  TimelineItem,
+  WritingNote,
+} from "@/lib/content-types";
 
 /**
  * Loads site content from the markdown files in /content.
@@ -45,16 +51,25 @@ function readCollection(folder: string): { slug: string; data: Frontmatter; body
 }
 
 /**
- * Normalizes a markdown body into paragraphs separated by "\n\n".
+ * Normalizes a markdown body without flattening it.
  *
- * Line breaks inside a paragraph become spaces, so prose can be hard-wrapped in
- * the editor without the wrapping showing up on the page.
+ * Blocks stay separated by a single blank line and line breaks inside a block are
+ * preserved, because a "- " at the start of a line is what makes it a bullet.
+ * Joining hard-wrapped lines back together is the block parser's job — see
+ * `blocks()` in lib/content-types.ts.
  */
 function unwrap(body: string): string {
   return body
+    .replace(/\r\n/g, "\n")
     .trim()
     .split(/\n{2,}/)
-    .map((paragraph) => paragraph.replace(/\s*\n\s*/g, " ").trim())
+    .map((block) =>
+      block
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .join("\n"),
+    )
     .filter(Boolean)
     .join("\n\n");
 }
@@ -63,21 +78,34 @@ function fail(file: string, message: string): never {
   throw new Error(`${file}: ${message}`);
 }
 
+/**
+ * YAML turns a bare `2026` into a number and a bare `2026-03-01` into a Date, so a
+ * year written the obvious way would otherwise fail validation. Both are accepted
+ * and rendered as text.
+ */
+function asText(value: unknown): string | undefined {
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return undefined;
+}
+
 function str(data: Frontmatter, key: string, file: string): string {
-  const value = data[key];
-  if (typeof value !== "string" || value.trim() === "") {
+  const value = asText(data[key]);
+  if (value === undefined || value === "") {
     fail(file, `missing required field "${key}" (expected text)`);
   }
-  return value.trim();
+  return value;
 }
 
 function optionalStr(data: Frontmatter, key: string, file: string): string | undefined {
-  const value = data[key];
-  if (value === undefined || value === null) return undefined;
-  if (typeof value !== "string" || value.trim() === "") {
+  const raw = data[key];
+  if (raw === undefined || raw === null) return undefined;
+  const value = asText(raw);
+  if (value === undefined || value === "") {
     fail(file, `field "${key}" is present but empty (remove the line, or give it a value)`);
   }
-  return value.trim();
+  return value;
 }
 
 function num(data: Frontmatter, key: string, file: string): number {
@@ -163,6 +191,55 @@ export function getCareer(): TimelineItem[] {
   });
 
   return sort(roles);
+}
+
+/** Every writing note, ordered by the `order` field, ascending. */
+export function getNotes(): WritingNote[] {
+  const notes = readCollection("writing").map(({ slug, data, body: content }) => {
+    const file = `content/writing/${slug}.md`;
+    const url = optionalStr(data, "url", file);
+
+    // A note either lives on this site (and needs a body) or links out.
+    if (!url && content === "") {
+      fail(file, "needs either a body to publish, or a `url` to link out to");
+    }
+
+    return {
+      slug,
+      title: str(data, "title", file),
+      date: str(data, "date", file),
+      order: num(data, "order", file),
+      excerpt: str(data, "excerpt", file),
+      url,
+      body: content,
+    } satisfies WritingNote;
+  });
+
+  return sort(notes);
+}
+
+/** One note by slug, or undefined if there is no such file. */
+export function getNote(slug: string): WritingNote | undefined {
+  return getNotes().find((note) => note.slug === slug);
+}
+
+/** Every certification, ordered by the `order` field, ascending. */
+export function getCertifications(): Certification[] {
+  const certs = readCollection("certifications").map(({ slug, data }) => {
+    const file = `content/certifications/${slug}.md`;
+
+    return {
+      slug,
+      title: str(data, "title", file),
+      issuer: str(data, "issuer", file),
+      date: str(data, "date", file),
+      order: num(data, "order", file),
+      image: optionalStr(data, "image", file),
+      url: optionalStr(data, "url", file),
+    } satisfies Certification;
+  });
+
+  return sort(certs);
 }
 
 /** Orders by the `order` field, falling back to slug so ties stay stable. */

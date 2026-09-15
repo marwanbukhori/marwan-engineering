@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, getProjects } from "@/lib/content";
-import { paragraphs, type AppStatus } from "@/lib/content-types";
+import { type AppStatus } from "@/lib/content-types";
+import { DetailProse } from "@/components/detail-prose";
 import { tagColor } from "@/lib/tag-colors";
 
 const STATUS_STYLE: Record<AppStatus, { bg: string; text: string }> = {
@@ -77,13 +78,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h2 className="mb-2 text-[11px] font-medium tracking-[0.06em] text-accent uppercase">
             How it works
           </h2>
-          <div className="flex max-w-[680px] flex-col gap-4">
-            {paragraphs(app.detail).map((paragraph) => (
-              <p key={paragraph} className="text-[15px] leading-relaxed text-muted">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          <DetailProse
+            detail={app.detail}
+            className="max-w-[680px] gap-4 text-[15px] leading-relaxed text-muted"
+          />
         </div>
 
         {app.techStack && app.techStack.length > 0 && (

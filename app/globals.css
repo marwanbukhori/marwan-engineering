@@ -22,6 +22,9 @@
   --doodle-sun-deep: #a3620a;
   --block-dark: #120d09;
   --grain-blend: overlay;
+  /* How strongly the background image is dimmed behind the text.
+     Raise the alpha toward 1 for darker, lower it toward 0 for more visible art. */
+  --bg-scrim: rgba(18, 13, 9, 0.78);
 }
 
 @theme inline {
@@ -46,8 +49,13 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url("/background2-blurred.jpg") center / cover no-repeat;
-  filter: brightness(0.4) saturate(0.9);
+  background-image: linear-gradient(var(--bg-scrim), var(--bg-scrim)), url("/grass.gif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Keeps the pixel art crisp instead of letting the browser smooth it when scaled up. */
+  image-rendering: pixelated;
+  filter: brightness(0.85) saturate(0.9);
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
