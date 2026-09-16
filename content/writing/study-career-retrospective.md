@@ -86,8 +86,7 @@ and audit policy, all according to the audit documents:
 - Fixing security issues in HTTP headers
 - Introducing rate limiters
 
-I didn't stay long, as the job and the company did not align with my overall career
-journey. Also for a personal reason: I had a two-week Japan trip planned.
+I didn't stay long, as how the company structured the team, arrangement, and the working culture did not align with my personal career goal and aspiration. Still maintain a good connection to the people there up until now.
 
 ## Third transfer (Verus Virtus): May 2026 - Aug 2026
 
